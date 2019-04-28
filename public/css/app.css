@@ -1,0 +1,19 @@
+/* Estilos personalizados para Warmy Army App*/
+
+@import url("https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css");
+
+.card-header{
+    padding: 1.25rem 1.25rem;
+}
+.card .table td,
+.card .table th {
+    padding-right: 1.25rem;
+    padding-left: 1.25rem;
+}
+.pd-l-5em{
+    padding-left: 5em;
+}
+.data-info-person{
+    color: #902E5B;
+    font-weight: 600;
+}
