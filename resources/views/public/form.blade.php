@@ -133,7 +133,7 @@
                   <div class="col-md-4">
                     <div class="form-group">
                       <label class="form-control-label" for="photo-project">Imagen</label>
-                      <input type="file" id="photo-project" name="photo-project" accept="image/*">
+                      <input type="hidden" id="photo-project" name="photo-project" accept="image/*">
                     </div>
                   </div>
                 </div>              

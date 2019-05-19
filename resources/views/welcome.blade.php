@@ -102,7 +102,7 @@
 
             <div class="content">
                 <div class="title m-b-md brand-wa">
-                    WARMY ARMY
+                    WARMI ARMY
                 </div>
             </div>
         </div>
