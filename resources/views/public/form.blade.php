@@ -270,8 +270,6 @@ e.preventDefault();
     let nwomen = $('#input-women').val();
     // let image = $('#photo-project').val();
 
-    console.log(project,category,ntotal,nwomen);
-
     $.ajax({
       type:'POST',
       url: '/form',
@@ -281,7 +279,7 @@ e.preventDefault();
       processData: false,
       success:function(data){
         data = JSON.parse(data);
-        console.log('Validation true!', 'se pudo Añadir los datos de la empresa<br>',data);        
+        console.log('Validation true!', 'se pudo Añadir los datos de la empresa<br>');        
         globalTotalMembers = data.total_members;
         globalTotalWomen = data.women_members;
           
@@ -307,8 +305,7 @@ e.preventDefault();
         formDataMember.append('_token', $('input[name=_token]').val());
 
         let inputMember = $('#input-member').val();	  
-        let inputRole = $('#input-role').val();	  
-        console.log(inputMember,inputRole);
+        let inputRole = $('#input-role').val();
 
         if(inputMember != '' || inputRole != ''){
           if(globalCounter <= globalTotalWomen){
@@ -359,7 +356,7 @@ e.preventDefault();
       var result = Object.keys(data).map(function(key) {
         return [data[key]['role'], (20 - parseInt(key))];
       });
-      console.log(Object.values(result));
+      // console.log(Object.values(result));
       Highcharts.chart('container1', {
         chart: {
             type: 'column'
