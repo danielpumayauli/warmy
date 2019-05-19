@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
-  <title>Registre su empresa - WARMY ARMY</title>
+  <title>Registre su empresa - WARMI ARMY</title>
   <!-- Favicon -->
   <link href="{{ asset('img/brand/favicon.png')}}" rel="icon" type="image/png">
   <!-- Fonts -->
@@ -100,10 +100,9 @@
       <div class="col-md-6">
           <div class="row">
             <div id="contenido" class="col-md-12" style="background: #fff">
-                <div id="info-empresa" style="padding: 15px;">
-                
+                <div id="info-empresa" style="padding: 10px;">
+
                 </div>
-                <br>
                 <div id="info-miembros">
                   
                 </div>
@@ -114,6 +113,7 @@
 
           <div id="first_step" style="padding: 15px;">
             <span>Complete los datos para registrar su empresa en WA</span>
+              <br><br>
               
               <form id="form-project" enctype="multipart/form-data">
               {{csrf_field()}}
@@ -121,7 +121,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label class="form-control-label" for="input-client">Empresa</label>
-                      <input type="text" id="input-client" name="input-client" class="form-control form-control-alternative" placeholder="" >
+                      <input type="text" required id="input-client" name="input-client" class="form-control form-control-alternative" placeholder="" >
                     </div>
                   </div>
                   <div class="col-md-6" >
@@ -130,12 +130,24 @@
                       <input type="text" required id="input-category" name="input-category" class="form-control form-control-alternative" placeholder="" >
                     </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-6" >
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-category">¿Cuántas personas conforman su empresa?</label>
+                      <input type="number" required id="input-total" name="input-total" min="1" max="500" class="form-control form-control-alternative" placeholder="" >
+                    </div>
+                  </div>
+                  <div class="col-md-6" >
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-category">¿Cuántas mujeres conforman su empresa?</label>
+                      <input type="number" required id="input-women" name="input-women" min="1" max="200" class="form-control form-control-alternative" placeholder="" >
+                    </div>
+                  </div>
+                  <!-- <div class="col-md-4">
                     <div class="form-group">
                       <label class="form-control-label" for="photo-project">Imagen</label>
                       <input type="hidden" id="photo-project" name="photo-project" accept="image/*">
                     </div>
-                  </div>
+                  </div> -->
                 </div>              
                   
                   <button type="submit" id="btn1Enviar" name="btn1Enviar" class="btn btn-primary btn-round">Registrar empresa</button>
@@ -147,34 +159,37 @@
 
 
           <div id="second_step" style="padding:15px; display: none;">
-            <span style="padding: 10px 5px;">Complete los datos para registrar un nuevo participante en su empresa:</span>
+            <span style="padding: 10px 0;">Complete los datos para registrar un nuevo participante en su empresa:</span>
+            <br><br>
             <form id="form-member" enctype="multipart/form-data">
               {{csrf_field()}}
-                <div  class="row">                
-                  <div class="col-md-4">
+                <div  class="row">
+                <div class="col-md-12" >
                     <div class="form-group">
-                      <label class="form-control-label" for="input-role">Cargo</label>
-                      <select id="input-role" type="text" class="" name="input-role" autofocus >
-                        <option value="Genrente General">Gerente General</option>
+                      <label class="form-control-label" for="input-member">Nombres y Apellidos:</label>
+                      <input type="text" id="input-member" name="input-member" class="form-control form-control-alternative" placeholder="" style="width:50%;" required>
+                    </div>
+                  </div>              
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-role">Cargo:</label>
+                      <select id="input-role" type="text" class="form-control form-control-alternative" name="input-role" autofocus style="width:50%" required>
+                        <option value="Gerente General">Gerente General</option>
                         <option value="Gerente Comercial">Gerente Comercial</option>
                         <option value="Adminitrador">Adminitrador</option>
                         <option value="Contador">Contador</option>
                         <option value="Supervisor">Supervisor</option>
+                        <option value="Otro">Otro</option>
                       </select>
                       <input type="hidden" id="input-block" name="input-block" >
                     </div>
                   </div>
-                  <div class="col-md-4" >
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-member">Nombres y Apellidos</label>
-                      <input type="text" id="input-member" name="input-member" class="" placeholder="" >
-                    </div>
-                  </div>
+                  
                   
                 </div>              
                   
                   <button type="submit" id="btn2Enviar" name="btn2Enviar" class="btn btn-primary btn-round">Registrar participante</button>
-                  <a href="{{ route('form') }}" class="btn btn-primary btn-round">Registrar otra empresa</a>
+                  <a href="{{ route('form') }}" class="btn btn-link btn-round">Registrar otra empresa</a>
                   
               </form>
           </div>
@@ -223,7 +238,7 @@
     <div class="row align-items-center justify-content-xl-between">
       <div class="col-xl-6">
         <div class="copyright text-center text-xl-left text-muted">
-          &copy; 2019 <a href="#" class="font-weight-bold ml-1" target="_blank">Warmy Army</a>
+          &copy; 2019 <a href="#" class="font-weight-bold ml-1" target="_blank">Warmi Army</a>
         </div>
       </div>
       
@@ -238,6 +253,10 @@
   <script src="{{ asset('js/argon.js?v=1.0.0') }}"></script>
   <script type="text/javascript">
 
+  let globalTotalMembers = null;
+  let globalTotalWomen = null;
+  let globalCounter = null;
+
 $('#form-project').on('submit', function(e) {
 
 e.preventDefault();
@@ -247,7 +266,11 @@ e.preventDefault();
 
     let project = $('#input-client').val();	  
     let category = $('#input-category').val();
-    let image = $('#photo-project').val();
+    let ntotal = $('#input-total').val();
+    let nwomen = $('#input-women').val();
+    // let image = $('#photo-project').val();
+
+    console.log(project,category,ntotal,nwomen);
 
     $.ajax({
       type:'POST',
@@ -258,12 +281,16 @@ e.preventDefault();
       processData: false,
       success:function(data){
         data = JSON.parse(data);
-        console.log('Validation true!', 'se pudo Añadir los datos de la empresa<br>',data);
+        console.log('Validation true!', 'se pudo Añadir los datos de la empresa<br>',data);        
+        globalTotalMembers = data.total_members;
+        globalTotalWomen = data.women_members;
           
           $('#info-empresa').html('<h3>Empresa: '+data.name+' - <i>Categoría: '+data.category+'</i></h3><br>'+((data.image != null) ? '<img src="'+data.image+'" width="100"/>':''));
-          $('#input-block').attr("value", data.id)
+          $('#input-block').attr("value", data.id);
+
           $("#first_step").remove();
           $("#second_step").css("display", "block");
+          
       },
       error: function(jqXHR, text, error){
           alert('No se pudo Añadir los datos<br>' + error);
@@ -279,35 +306,56 @@ e.preventDefault();
         let formDataMember = new FormData(this);
         formDataMember.append('_token', $('input[name=_token]').val());
 
-        $.ajax({
-          type:'POST',
-          url: '/form/registerMember',
-          data:formDataMember,
-          
-          cache:false,
-          contentType: false,
-          processData: false,
-          success:function(data){
-            data = JSON.parse(data);
-            console.log('Validation true!', 'se pudo Añadir los datos del miembro<br>',data);
-              let founders = $('#info-miembros').html();
+        let inputMember = $('#input-member').val();	  
+        let inputRole = $('#input-role').val();	  
+        console.log(inputMember,inputRole);
 
-              $('#info-miembros').html(founders+'<p style="display: inline; padding: 20px;">Cargo: '+data.member.role+'</p><p style="display: inline; padding: 20px;">Nombre: '+data.member.fullname+'</p><br>');
-              $('#input-role').val("");
-              $('#input-member').val("");
-              initGraph1(data.members);
-              initGraph2(data.members);
-          },
-          error: function(jqXHR, text, error){
-              alert('No se pudo Añadir los datos<br>' + error);
+        if(inputMember != '' || inputRole != ''){
+          if(globalCounter <= globalTotalWomen){
+            $.ajax({
+              type:'POST',
+              url: '/form/registerMember',
+              data:formDataMember,
+              
+              cache:false,
+              contentType: false,
+              processData: false,
+              success:function(data){
+                data = JSON.parse(data);
+                console.log('Validation true!', 'se pudo Añadir los datos del miembro.');
+                globalCounter = data.members.length;
+
+                if(globalCounter < globalTotalWomen){
+                  let founders = $('#info-miembros').html();
+                  $('#info-miembros').html(founders+'<p style="display: inline; padding: 5px;">Cargo: '+data.member.role+'</p><p style="display: inline; padding: 20px;">Nombre: '+data.member.fullname+'</p><br>');
+                  $('#input-role').val("");
+                  $('#input-member').val("");
+                }else{
+                  $('#info-miembros').html('<p style="padding:5px;">Usted ha completado el número total participantes mujeres de su empresa. Gracias por completar sus datos.</p>'+`<br><a href="{{ route('form') }}" class="btn btn-link btn-round">Registrar otra empresa</a>`);
+                  $('#second_step').remove();
+                }
+                
+                  
+                initGraph1(data.members,globalTotalMembers);
+                initGraph2(data.members,globalTotalMembers);
+              },
+              error: function(jqXHR, text, error){
+                  alert('No se pudo Añadir los datos<br>' + error);
+              }
+            });
+          }else{
+            alert('Usted ha completado el número total participantes mujeres de su empresa. Gracias.');
           }
-        });
+          
+        }else{
+          alert('Por favor, complete Nombres y apellidos y Cargo');
+        }
+
+        
 
       });
 
-    function initGraph1(data){
-      console.log('en el initgraph1');
-      console.log(data);
+    function initGraph1(data,globalTotalMembers){      
       var result = Object.keys(data).map(function(key) {
         return [data[key]['role'], (20 - parseInt(key))];
       });
@@ -348,9 +396,11 @@ e.preventDefault();
       });
     }
 
-    function initGraph2(data){
+    function initGraph2(data,globalTotalMembers){
+      // let percentGraph2 = (100/globalTotalMembers);
+      // console.log('global total memb es ',globalTotalMembers);
       let quantityMembersF = Object.keys(data).length;
-      let quantityMembersM = 5 - Object.keys(data).length;
+      let quantityMembersM = globalTotalMembers - Object.keys(data).length;
 
       Highcharts.chart('container2', {
           chart: {

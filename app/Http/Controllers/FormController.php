@@ -15,24 +15,28 @@ class FormController extends Controller
     {   
         $name = $request->input('input-client');
         $category = $request->input('input-category');
-        $fileName = '';
-        $moved = false;
-        //Recoger en una variable la imagen en el proyecto temporalmente
-        if($request->file('photo-project') != null){
-            $file = $request->file('photo-project');
-            $path = public_path() . '/projects';
-            $fileName = '/projects/'.uniqid() .'_'. $this->cleanUpperName($file->getClientOriginalName());
-            $moved = $file->move($path, $fileName);
-        }
+        $ntotal = $request->input('input-total');
+        $nwomen = $request->input('input-women');
+        // $fileName = '';
+        // $moved = false;
+        // //Recoger en una variable la imagen en el proyecto temporalmente
+        // if($request->file('photo-project') != null){
+        //     $file = $request->file('photo-project');
+        //     $path = public_path() . '/projects';
+        //     $fileName = '/projects/'.uniqid() .'_'. $this->cleanUpperName($file->getClientOriginalName());
+        //     $moved = $file->move($path, $fileName);
+        // }
 
 
             $id = DB::table('temporal_projects')->insertGetId(
                 array('name' => $name, 
                         'category' => $category,
-                        'image' => (($fileName != '' && $moved == true) ? $fileName : null) )
+                        //'image' => (($fileName != '' && $moved == true) ? $fileName : null) 
+                       'total_members' => $ntotal,
+                       'women_members' => $nwomen )
             );
             $project = DB::table('temporal_projects')->where('id', $id)->first();
-    	echo json_encode($project);
+        echo json_encode($project);
     }
     public function storeMember(Request $request)
     {
