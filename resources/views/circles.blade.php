@@ -177,7 +177,7 @@
   <!-- Main content -->
   <div class="main-content">
     <!-- Top navbar -->
-    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main" style="background-color: #4FBC92">
+    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main" style="background-color: #7C5CC4">
       <div class="container-fluid">
         <!-- Brand -->
         <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="/">MIS CÍRCULOS</a>
@@ -292,7 +292,8 @@
 
               <!-- Trigger the modal with a button -->
            
-              <a href="/circle/create" class="btn btn-info">
+              <a href="/circle/create" class="btn btn-primary">
+
               <i class="fa fa-plus"></i> Nuevo Proyecto</a>
             </div>
             <div class="table-responsive">

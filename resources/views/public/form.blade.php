@@ -1,22 +1,29 @@
-<!DOCTYPE html>
-<html>
-
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
-  <meta name="author" content="Creative Tim">
-  <title>Registre su empresa - WARMI ARMY</title>
-  <!-- Favicon -->
-  <link href="{{ asset('img/brand/favicon.png')}}" rel="icon" type="image/png">
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-  <!-- Icons -->
-  <link href="{{ asset('vendor/nucleo/css/nucleo.css') }}" rel="stylesheet">
-  <link href="{{ asset('vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
-  <!-- Argon CSS -->
-  <link type="text/css" href="{{ asset('css/argon.css?v=1.0.0') }}" rel="stylesheet">
-  <link type="text/css" href="{{ asset('css/app.css?v=1.0.0') }}" rel="stylesheet">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>Registrar Empresa</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png" />
+	<link rel="icon" type="image/png" href="assets/img/favicon.png" />
+
+	<!--     Fonts and icons     -->
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+
+	<!-- CSS Files -->
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="assets/css/material-bootstrap-wizard.css" rel="stylesheet" />
+
+	<!-- CSS Just for demo purpose, don't include it in your project -->
+	<link href="assets/css/demo.css" rel="stylesheet" />
+
+	  <!-- Argon CSS -->
+
   <script src="{{ asset('code/highcharts.js') }}"></script>
   <script src="{{ asset('code/modules/series-label.js') }}"></script>
   <script src="{{ asset('code/modules/exporting.js') }}"></script>
@@ -24,156 +31,175 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main" style="background-color: #4FBC92">
-      <div class="container-fluid">
-      <!-- Brand -->
-      <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="/">REGISTRE SU EMPRESA</a>
-        
-        
-        
-        <!-- User -->
-        @if( isset(Auth::user()->id) )
-        <ul class="navbar-nav align-items-center d-none d-md-flex">
-          <li class="nav-item dropdown">
-            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ni ni-bell-55"></i>+</a>
-            <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-              <div class=" dropdown-header noti-title">
-                <h6 class="text-overflow m-0">Notificaciones</h6>
-              </div>
-              <a href="../examples/profile.html" class="dropdown-item">
-                <i class="ni ni-bulb-61"></i>
-                <span>Solicitud de Nueva persona  </span>
-              </a>
-              <a href="../examples/profile.html" class="dropdown-item">
-                <i class="ni ni-bulb-61"></i>
-                <span>Solicitud de nueva persona</span>
-              </a>
-              <a href="../examples/profile.html" class="dropdown-item text-center">
-                
-                <span>Ver todas</span>
-              </a>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <div class="media align-items-center">
-                <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="{{ Auth::user()->image }}">
-                </span>
-                <div class="media-body ml-2 d-none d-lg-block">
-                  <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name }}</span>
-                </div>
-              </div>
-            </a>
-            <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-              <div class=" dropdown-header noti-title">
-                <h6 class="text-overflow m-0">Welcome!</h6>
-              </div>
-              <a href="/profile" class="dropdown-item">
-                <i class="ni ni-single-02"></i>
-                <span>Mi Perfil</span>
-              </a>
-              <a href="/my-circles" class="dropdown-item">
-                <i class="ni ni-settings-gear-65"></i>
-                <span>Mis circulos</span>
-              </a>
-              <a href="#" class="dropdown-item">
-                <i class="ni ni-calendar-grid-58"></i>
-                <span>Activity</span>
-              </a>
-              <a href="#" class="dropdown-item">
-                <i class="ni ni-support-16"></i>
-                <span>Support</span>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a href="#!" class="dropdown-item">
-                <i class="ni ni-user-run"></i>
-                <span>Logout</span>
-              </a>
-            </div>
-          </li>
-        </ul>
-        @endif
+	<div class="image-container set-full-height" style="background-image: url('assets/img/wizard-city.jpg')">
+	    <!--   Creative Tim Branding   -->
+	    <a href="http://creative-tim.com">
+	         <div class="logo-container">
+	            <div class="logo">
+	                <img src="assets/img/new_logo.png">
+	            </div>
+	            <div class="brand">
+	                Warmi Army
+	            </div>
+	        </div>
+	    </a>
+
+		<!--  Made With Material Kit  -->
+		<a href="#" class="made-with-mk">
+			<div class="brand">WA</div>
+			<div class="made-with">
+      
+      Warmi Army @2019
+
       </div>
-  </nav>
-  <div class="row">
-      <div class="col-md-6">
-          <div class="row">
-            <div id="contenido" class="col-md-12" style="background: #fff">
-                <div id="info-empresa" style="padding: 10px;">
+		</a>
 
-                </div>
-                <div id="info-miembros">
-                  
-                </div>
-            </div>
-          </div>
+	    <!--   Big container   -->
+	    <div class="container" >
+	        <div class="row">
+		        <div class="col-sm-8 col-sm-offset-2">
+		            <!--      Wizard container        -->
+		            <div class="wizard-container"  id="first_step" >
+		                <div class="card wizard-card" data-color="purple" id="wizard">
+			                <form id="form-project" enctype="multipart/form-data">
+			                {{csrf_field()}}
+						    <!--        You can switch " data-color="rose" "  with one of the next bright colors: "blue", "green", "orange", "purple"        -->
+
+		                    	<div class="wizard-header">
+		                        	<h3 class="wizard-title">
+		                        		Registre su empresa
+		                        	</h3>
+									<h5>Complete los datos para registrar su empresa en WA .</h5>
+		                    	</div>
+								<div visibility: hidden>
+									<ul>
+			                            <li><a href="#location" data-toggle="tab">Location</a></li>
+			                           
+			                        </ul>
+								</div>
+
+		                        <div class="tab-content">
+		                            <div class="tab-pane" id="location">
+		                            	<div class="row">
+		                                	<div class="col-sm-12">
+		                                    	
+		                                	</div>
+		                                	<div class="col-sm-5 col-sm-offset-1">
+		                                    	<div class="form-group label-floating">
+		                                        	<label class="control-label">Empresa</label>
+		                                        	<input type="text" class="form-control" required id="input-client" name="input-client">
+		                                    	</div>
+		                                	</div>
+		                                	<div class="col-sm-5">
+		                                    	<div class="form-group label-floating">
+		                                            <label class="control-label">Categoria</label>
+	                                            	<select required id="input-category" name="input-category" class="form-control">
+	                                                	<option disabled="" selected=""></option>
+                                                    <option value="Alimentos">Alimentos</option>
+                                     <option value="Eventos">Eventos</option>
+                                    <option value="Educacion">Educacion</option>
+                                    <option value="Salud">Salud</option>
+                                    <option value="Tursimo">Turismo</option>
+                                    <option value="Otro">Otro</option>
+	                                            	</select>
+	                                        	</div>
+		                                	</div>
+		                                	<div class="col-sm-5 col-sm-offset-1">
+		                                    	<div class="form-group label-floating">
+		                                        	<label class="control-label">¿Cuántas personas conforman su empresa?</label>
+                                              <input type="number" class="form-control" required id="input-total" name="input-total" min="1" max="500" placeholder="">
+
+                                                             </div>
+		                                	</div>
+		                                	<div class="col-sm-5">
+		                                    	<div class="form-group label-floating">
+		                                        	<label class="control-label">¿Cuántas mujeres conforman su empresa?</label>
+		                                        	
+		                                            	<input type="number" required id="input-women" name="input-women" min="1" max="200"  class="form-control" placeholder="" >
+		                                        
+		                                            	
+
+                                                   
+		                                    	</div>
+		                                	</div>
+		                            	</div>
+		                            </div>
+		                            
+									
+		                 
+		                         
+		                        <div class="wizard-footer">
+	                            	<div class="pull-right">
+                                <button class="btn btn-primary" id="btn1Enviar" name="btn1Enviar">Siguiente >></button>
+	                                </div>
+	                               
+		                            <div class="clearfix"></div>
+		                        </div>
+			                </form>
+		                </div>
+		            </div> <!-- wizard container -->
+		        </div>
+	        </div> <!-- row -->
+	    </div> <!--  big container -->
+
+	    <div class="footer">
+	        <div class="container text-center">
+          <div class="row" >
+
+          <div class="col-md-3">
+         
+
+
+</div>
 
 
 
-          <div id="first_step" style="padding: 15px;">
-            <span>Complete los datos para registrar su empresa en WA</span>
-              <br><br>
-              
-              <form id="form-project" enctype="multipart/form-data">
-              {{csrf_field()}}
-                <div  class="row">                
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-client">Empresa</label>
-                      <input type="text" required id="input-client" name="input-client" class="form-control form-control-alternative" placeholder="" >
-                    </div>
-                  </div>
-                  <div class="col-md-6" >
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-category">Categoría</label>
-                      <input type="text" required id="input-category" name="input-category" class="form-control form-control-alternative" placeholder="" >
-                    </div>
-                  </div>
-                  <div class="col-md-6" >
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-category">¿Cuántas personas conforman su empresa?</label>
-                      <input type="number" required id="input-total" name="input-total" min="1" max="500" class="form-control form-control-alternative" placeholder="" >
-                    </div>
-                  </div>
-                  <div class="col-md-6" >
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-category">¿Cuántas mujeres conforman su empresa?</label>
-                      <input type="number" required id="input-women" name="input-women" min="1" max="200" class="form-control form-control-alternative" placeholder="" >
-                    </div>
-                  </div>
-                  <!-- <div class="col-md-4">
-                    <div class="form-group">
-                      <label class="form-control-label" for="photo-project">Imagen</label>
-                      <input type="hidden" id="photo-project" name="photo-project" accept="image/*">
-                    </div>
-                  </div> -->
-                </div>              
-                  
-                  <button type="submit" id="btn1Enviar" name="btn1Enviar" class="btn btn-primary btn-round">Registrar empresa</button>
-                  
-              </form>
-          </div>
+  
 
 
 
 
           <div id="second_step" style="padding:15px; display: none;">
-            <span style="padding: 10px 0;">Complete los datos para registrar un nuevo participante en su empresa:</span>
-            <br><br>
+
+		  <div class="row">
+		        <div class="col-sm-8 col-sm-offset-2">
+         
+<div class="wizard-container">
+		                <div class="card wizard-card" data-color="purple" id="wizard">
+
             <form id="form-member" enctype="multipart/form-data">
-              {{csrf_field()}}
-                <div  class="row">
-                <div class="col-md-12" >
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-member">Nombres y Apellidos:</label>
-                      <input type="text" id="input-member" name="input-member" class="form-control form-control-alternative" placeholder="" style="width:50%;" required>
+ <!--        You can switch " data-color="rose" "  with one of the next bright colors: "blue", "green", "orange", "purple"        -->
+{{csrf_field()}}
+
+		                    	<div class="wizard-header">
+		                        	<h3 class="wizard-title">
+		                        		Registre participante
+		                        	</h3>
+									<h5>Complete los datos para registrar un nuevo participante en su empresa:</h5>
+		                    	</div>
+								<div visibility: hidden>
+									<ul>
+			                            <li><a href="#location2" data-toggle="tab">Location</a></li>
+			                           
+			                        </ul>
+								</div>
+
+              
+
+			  
+                
+                <div class="col-sm-5 col-sm-offset-1" >
+                    	<div class="form-group label-floating">
+                      <label class="control-label">Nombres y Apellidos:</label>
+                      <input type="text" id="input-member" name="input-member" class="form-control"placeholder=""  required>
                     </div>
                   </div>              
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-role">Cargo:</label>
-                      <select id="input-role" type="text" class="form-control form-control-alternative" name="input-role" autofocus style="width:50%" required>
+                  <div class="col-sm-5 col-sm-offset-1">
+                     	<div class="form-group label-floating">
+                      <label class="control-label">Cargo:</label>                                              	
+
+                      <select id="input-role" type="text" class="form-control" name="input-role"   required>
+					  <option disabled="" selected=""></option>
                         <option value="Gerente General">Gerente General</option>
                         <option value="Gerente Comercial">Gerente Comercial</option>
                         <option value="Adminitrador">Adminitrador</option>
@@ -185,18 +211,22 @@
                     </div>
                   </div>
                   
-                  
-                </div>              
-                  
                   <button type="submit" id="btn2Enviar" name="btn2Enviar" class="btn btn-primary btn-round">Registrar participante</button>
                   <a href="{{ route('form') }}" class="btn btn-link btn-round">Registrar otra empresa</a>
+                </div>              
+                  
+                  
                   
               </form>
           </div>
 
-        
-        
-      </div>
+  			</div>
+    	</div>
+	  </div>
+    </div>
+
+
+
       <div class="col-md-6">
         <div class="row">
           <div class="col-md-6">
@@ -210,48 +240,29 @@
         </div>
         <div class="row">
           <div class="col-md-3">
-            <a href="#" class=" " data-toggle="tooltip" data-original-title="Ver más Voluntme">
-              <img alt="voluntme" src="{{ asset('img/voluntme.jpg') }}" width="100">
-            </a>
-          </div>
-          <div class="col-md-3">
-          <a href="#" class=" " data-toggle="tooltip" data-original-title="Ver más Totemiq">
-              <img alt="totemiq" src="{{ asset('img/totemiq.jpg') }}"  width="100">
-            </a>
-          </div>
-          <div class="col-md-3">
-            <a href="#" class=" " data-toggle="tooltip" data-original-title="Ver más Aurora">
-              <img alt="aurora" src="{{ asset('img/aurora.jpg') }}" width="100">
-            </a>
-          </div>
-          <div class="col-md-3">
-            <a href="#" class=" " data-toggle="tooltip" data-original-title="Ver más Qadosh">
-              <img alt="qadosh" src="{{ asset('img/qadosh.jpg') }}"  width="100">
-            </a>
-          </div>  
-        </div>        
-      </div>
-  </div>    
-      
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="row align-items-center justify-content-xl-between">
-      <div class="col-xl-6">
-        <div class="copyright text-center text-xl-left text-muted">
-          &copy; 2019 <a href="#" class="font-weight-bold ml-1" target="_blank">Warmi Army</a>
-        </div>
-      </div>
-      
-    </div>
-  </footer>
 
-  <!-- Argon Scripts -->
-  <!-- Core -->
-  <script src="{{ asset('vendor/jquery/dist/jquery.min.js') }}"></script>
-  <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-  <!-- Argon JS -->
-  <script src="{{ asset('js/argon.js?v=1.0.0') }}"></script>
-  <script type="text/javascript">
+
+	        </div>
+	    </div>
+	</div>
+
+	
+
+</body>
+	<!--   Core JS Files   -->
+	<script src="assets/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="assets/js/jquery.bootstrap.js" type="text/javascript"></script>
+
+	 <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+
+	<!--  Plugin for the Wizard -->
+	<script src="assets/js/material-bootstrap-wizard.js"></script>
+
+	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
+	<script src="assets/js/jquery.validate.min.js"></script>
+
+	 <script type="text/javascript">
 
   let globalTotalMembers = null;
   let globalTotalWomen = null;
@@ -435,7 +446,5 @@ e.preventDefault();
 
     }
   </script>
-
-</body>
 
 </html>
