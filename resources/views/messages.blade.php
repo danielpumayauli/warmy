@@ -450,7 +450,7 @@
                 <div class="table-responsive">
                   <!-- Contenido de Mensajeria -->                 
 
-                  <div class="container" style="width:100%;background-color: ;">
+                  <div class="container" style="width:100%;background-color: cyan;">
                     <div class="messaging">
                           <div class="inbox_msg">
                             <div class="inbox_people">
@@ -496,7 +496,7 @@
                               </div>
                             </div>
                             <div class="mesgs">
-                              <div class="msg_history" style="background:;">
+                              <div class="msg_history" style="background:red;">
 
                                 @forelse($mensajes as $mensaje)
                                   @if (Auth::user()->id === $mensaje->emisor_id)
@@ -530,8 +530,8 @@
                                 <div class="input_msg_write">
                                 <form id="sendMessage" enctype="multipart/form-data">
                                   {{csrf_field()}}
-                                  <input id="textMessage" name="textMessage" type="text" class="write_msg" placeholder="Escribe tu mensaje" style="background:white" />
-                                  <button class="msg_send_btn" type="button"><i class="ni ni-send text-white" aria-hidden="true"></i></button>
+                                  <input id="textMessage" name="textMessage" type="text" class="write_msg" placeholder="Escribe tu mensaje..." style="background:white" />
+                                  <button class="msg_send_btn" type="submit"><i class="ni ni-send text-white" aria-hidden="true"></i></button>
                                 </form>
                                   
                                 </div>
@@ -571,8 +571,32 @@
 
       e.preventDefault();
 
-      console.log('enviado');
-      document.getElementById('textMessage').val = '';
+      let formDataText = new FormData(this);
+      formDataText.append('_token', $('input[name=_token]').val());
+
+      let textMessage = $('#textMessage').val();	 
+
+      if(textMessage != ''){
+
+        $.ajax({
+              type:'POST',
+              url: '/messages/createMessage',
+              data:formDataText,              
+              cache:false,
+              contentType: false,
+              processData: false,
+              success:function(data){
+                data = JSON.parse(data);
+                console.log('Validation true!', 'se pudo Añadir los datos del miembro.',data);                
+              },
+              error: function(jqXHR, text, error){
+                alert('No se pudo Añadir los datos<br>' + error);
+              }
+            });
+
+        document.getElementById('textMessage').value = '';
+      // console.log('enviado!!');
+      }  
     });
   </script>
 </body>

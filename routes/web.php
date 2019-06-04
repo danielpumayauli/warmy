@@ -37,6 +37,8 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/activity', 'ActivityController@index')->name('activity');
     Route::get('/other-circles', 'ExplorerController@index')->name('other-circles');
     Route::get('/messages', 'MessagesController@index')->name('messages');
+    Route::post('/messages/createMessage', 'MessagesController@storeMessage');
+
     Route::get('/news', 'NewsController@index')->name('news');
 
     Route::post('/project/posts/{shortNameProject}', 'PostController@store');

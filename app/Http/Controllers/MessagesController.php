@@ -49,6 +49,8 @@ class MessagesController extends Controller
                             user_receiver_id as receptor_id,
                             message as mensaje,
                             created_at as fecha,
+                            LEFT((created_at),10) AS dia,
+                            RIGHT((created_at),8) AS hora,
                             null as contacto,
                             null as imagen_contacto
                             FROM messages
@@ -59,6 +61,8 @@ class MessagesController extends Controller
                             m.user_receiver_id,
                             m.message,
                             m.created_at,
+                            LEFT((m.created_at),10) AS dia,
+                            RIGHT((m.created_at),8) AS hora,
                             u.name,
                             u.image 
                             FROM messages m
@@ -79,7 +83,7 @@ class MessagesController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -88,9 +92,23 @@ class MessagesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeMessage(Request $request)
     {
-        //
+        $textMessage = $request->input('textMessage');
+
+        // insert
+
+        // try{
+
+        // }catch(){
+
+        // }
+
+        // select
+
+        // armado de caja de mensajes
+
+        echo json_encode($textMessage);
     }
 
     /**
