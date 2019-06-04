@@ -33,7 +33,7 @@
 <body>
 	<div class="image-container set-full-height" style="background-image: url('assets/img/wizard-city.jpg')">
 	    <!--   Creative Tim Branding   -->
-	    <a href="/">
+	    <a href="http://creative-tim.com">
 	         <div class="logo-container">
 	            <div class="logo">
 	                <img src="assets/img/new_logo.png">
@@ -373,7 +373,7 @@ e.preventDefault();
             type: 'column'
         },
         title: {
-            text: 'Acerca de su empresa'
+            text: 'Cargos femeninos en su empresa'
         },
         xAxis: {
             type: 'category',

@@ -333,7 +333,26 @@
                       @forelse($projects as $project)
                       <div class="row project__disponible" style="padding: 10px;">
                         <div class="col-md-8">
-                         <p>{{ $project->name }}. {{ $project->participants }} <br><span class="badge badge-info">{{ $project->circle_name }}</span></p>
+                         <p>{{ $project->name }}. {{ $project->participants }} <br>
+
+                        
+                         
+                               @if (($project->circle_name) === "Comercial")
+
+                                   <span class="badge badge-danger">COMERCIAL</span>
+
+                                @elseif (($project->circle_name) === "Laboral")
+                                     <span class="badge badge-info">LABORAL</span>
+ 
+                                 @elseif (($project->circle_name) === "Social")
+                                     <span class="badge badge-warning" style="background-color: yellow !important">SOCIAL</span>
+                                       
+                                 @elseif (($project->circle_name) === "StartUp")
+                                     <span class="badge badge-success">STARTUP</span>
+                         
+                         @endif
+                         
+                         </p>
                           
                         </div>
                         <div class="col-md-4">
