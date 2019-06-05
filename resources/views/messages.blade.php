@@ -627,7 +627,6 @@
               },
               success: function(respuesta) {
                 data = JSON.parse(respuesta);
-                console.log(data);
                 if(data.error == 0){
                   document.getElementById('inbox_chat').innerHTML = data.html;
                 }else{
