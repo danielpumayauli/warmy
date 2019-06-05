@@ -573,9 +573,8 @@
                   document.getElementById('msg_history').innerHTML = data.html;
                   updateScroll();
                 }else{
-                  console.log('No se pudo insertar el mensaje', data.message)
-                }
-                console.log('Validation true!', 'se pudo Añadir los datos del miembro.',data);                
+                  console.log('No se pudo insertar el mensaje')
+                }             
               },
               error: function(jqXHR, text, error){
                 alert('No se pudo Añadir los datos ' + error);
