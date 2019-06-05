@@ -616,7 +616,7 @@
       if(event.which == 13 || event.keyCode == 13){
         let busqueda = document.getElementById('searchContact').value;
 
-        console.log(busqueda);
+        //console.log(busqueda);
 
           $.ajax({
               type:'GET',
