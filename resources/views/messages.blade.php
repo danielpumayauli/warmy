@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
   <title>Mensajes - WARMY ARMY</title>
@@ -394,7 +395,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
               
-            <a href="/profile" class="dropdown-item">
+              <a href="/profile" class="dropdown-item">
                 <i class="ni ni-single-02"></i>
                 <span>Mi Perfil</span>
               </a>
@@ -441,102 +442,78 @@
           </div>
         </div>
         <!-- Page content -->
-        <div class="container-fluid mt--7">
+        <div class="container mt--7">
           
-          <div class="row mt-5">
+          <div class="row">
             <div class="col-xl-12 mb-5 mb-xl-0">
               <div class="card shadow">
                
                 <div class="table-responsive">
                   <!-- Contenido de Mensajeria -->                 
 
-                  <div class="container" style="width:100%;background-color: cyan;">
+                  <div class="container" style="width:100%;background-color: ;">
                     <div class="messaging">
                           <div class="inbox_msg">
                             <div class="inbox_people">
                               <div class="headind_srch">
                                 <div class="recent_heading">
-                                  <h4>Recent</h4>
+                                  <h4>Contactos</h4>
                                 </div>
                                 <div class="srch_bar">
                                   <div class="stylish-input-group">
-                                    <input type="text" class="search-bar"  placeholder="Search" >
+                                    <input id="searchContact" name="searchContact" type="text" class="search-bar"  placeholder="Buscar" onkeypress="return findEvent(event)">
                                     <span class="input-group-addon">
                                     <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
                                     </span> </div>
                                 </div>
                               </div>
-                              <div class="inbox_chat">
-                                <!-- <div class="chat_list active_chat">
-                                  <div class="chat_people">
-                                    <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                    <div class="chat_ib">
-                                      <h5> 1 Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                      <p>Test, which is a new approach to have all solutions 
-                                        astrology under one roof.</p>
-                                    </div>
-                                  </div>
-                                </div> -->
+                              <div id="inbox_chat" class="inbox_chat">
+                                
                                 @forelse($contacts as $contact)
-                                <div class="chat_list">
-                                  <div class="chat_people">
+                                <div class="chat_list" onclick="refreshChat({{$contact->id}},'{{ $contact->name}} {{ $contact->lastName }}')" style="cursor: pointer;">
+                                  <div class="chat_people" >
                                     <div class="chat_img"> <img src="{{ $contact->image }}" alt="{{ $contact->name}}" title="{{ $contact->name}}"> </div>
                                     <div class="chat_ib">
-                                      <h5> {{ $contact->name}} {{ $contact->lastName }} <span class="chat_date">{{ $contact->id }} Dec 25</span></h5>
+                                      <h5> {{ $contact->name}} {{ $contact->lastName }} <span class="chat_date">...</span></h5>
                                       
                                     </div>
                                   </div>
                                 </div>
                                 @empty
 
-                                @endforelse
+                                <div class="chat_list">
+                                  <div class="chat_people" >
+                                    <p>Usted no tiene contactos por el momento.</p>
+                                  </div>
+                                </div>
 
-                                
+                                @endforelse
                                 
                               </div>
                             </div>
-                            <div class="mesgs">
-                              <div class="msg_history" style="background:red;">
 
-                                @forelse($mensajes as $mensaje)
-                                  @if (Auth::user()->id === $mensaje->emisor_id)
-                                  <div class="outgoing_msg">
-                                    <div class="sent_msg">
-                                      <p>{{$mensaje->mensaje}}</p>
-                                      <span class="time_date"> 11:01 AM    |    Today</span> </div>
-                                  </div>
-                                  @else
-                                  <div class="incoming_msg">
-                                    <div class="incoming_msg_img"> <img src="{{$mensaje->imagen_contacto}}" alt="{{$mensaje->contacto}}" title="{{$mensaje->contacto}}"> </div>
-                                    <div class="received_msg">
-                                      <div class="received_withd_msg">
-                                        <p> {{$mensaje->mensaje}} </p>
-                                        <span class="time_date"> 11:01 AM    |    Yesterday</span></div>
-                                    </div>
-                                  </div>
-                                  @endif
-                                @empty
+                            <!--  -->
+                            <div class="mesgs" style="background:;">
+                              <p id="titleReceiver" style="width:100%; padding: 0 5px; margin: 0"></p><hr style="margin:0">
 
-                                @endforelse               
-
-                                
-
-                                
-
-
-
+                              <div id="msg_history" class="msg_history" style="background:;" data-receiver="">
+                                <div style="width: 100%; height: 100%; display:flex; justify-content: center; align-items: center;">
+                                  <p>Seleccione un contacto.</p>
+                                </div>
                               </div>
-                              <div class="type_msg">
+
+                              <div id="type_msg" class="type_msg">
                                 <div class="input_msg_write">
                                 <form id="sendMessage" enctype="multipart/form-data">
                                   {{csrf_field()}}
-                                  <input id="textMessage" name="textMessage" type="text" class="write_msg" placeholder="Escribe tu mensaje..." style="background:white" />
-                                  <button class="msg_send_btn" type="submit"><i class="ni ni-send text-white" aria-hidden="true"></i></button>
-                                </form>
+                                  <input id="textMessage" name="textMessage" type="text" class="write_msg" placeholder="Escribe tu mensaje..." style="background:white" autocomplete="off"/>
                                   
+                                  <button class="msg_send_btn" type="submit"><i class="ni ni-send text-white" aria-hidden="true"></i></button>
+                                </form>	  
                                 </div>
                               </div>
                             </div>
+                            <!--  -->
                           </div>                          
                         </div>
                         
@@ -567,16 +544,20 @@
   <!-- Argon JS -->
   <script src="{{ asset('js/argon.js?v=1.0.0') }}"></script>
   <script>
-    $('#sendMessage').on('submit', function(e) {
+    
+    document.getElementById('type_msg').style.display = 'none';
 
+    $('#sendMessage').on('submit', function(e) {
       e.preventDefault();
 
       let formDataText = new FormData(this);
+      let destiner = document.getElementById('msg_history').getAttribute('data-receiver');
       formDataText.append('_token', $('input[name=_token]').val());
+      formDataText.append('destiner', destiner);
 
       let textMessage = $('#textMessage').val();	 
 
-      if(textMessage != ''){
+      if(textMessage != '' && destiner != ''){
 
         $.ajax({
               type:'POST',
@@ -587,17 +568,83 @@
               processData: false,
               success:function(data){
                 data = JSON.parse(data);
+                if(data.html){
+                  // se pinta el contenedor de msjs
+                  document.getElementById('msg_history').innerHTML = data.html;
+                  updateScroll();
+                }else{
+                  console.log('No se pudo insertar el mensaje', data.message)
+                }
                 console.log('Validation true!', 'se pudo Añadir los datos del miembro.',data);                
               },
               error: function(jqXHR, text, error){
-                alert('No se pudo Añadir los datos<br>' + error);
+                alert('No se pudo Añadir los datos ' + error);
               }
             });
 
         document.getElementById('textMessage').value = '';
-      // console.log('enviado!!');
       }  
     });
+
+    function refreshChat(receiver,nameReceiver){
+      document.getElementById('type_msg').style.display = 'block';   
+      if(receiver){
+        $.ajax({
+              type:'GET',
+              url: '/messages/show',
+              data: { receiver : receiver,
+                      nameReceiver : nameReceiver},
+              success:function(data){
+                data = JSON.parse(data);
+                let history = document.getElementById('msg_history');
+
+                history.innerHTML = data.html;
+                history.setAttribute('data-receiver', data.receiver);
+                document.getElementById('titleReceiver').innerHTML = data.nameReceiver;
+                updateScroll();           
+              },
+              error: function(jqXHR, text, error){
+                alert('No se pudo Añadir los datos ' + error);
+              }
+            });
+      }else{
+        console.log('Se debe seleccionar un contacto habilitado.');
+      }      
+    }
+
+    /* Se ejecuta busqueda de usuario */
+    function findEvent(event){
+      if(event.which == 13 || event.keyCode == 13){
+        let busqueda = document.getElementById('searchContact').value;
+
+        console.log(busqueda);
+
+          $.ajax({
+              type:'GET',
+              url: '/messages/findUser',
+              data:{
+                  busqueda    :   busqueda,
+              },
+              success: function(respuesta) {
+                data = JSON.parse(respuesta);
+                console.log(data);
+                if(data.error == 0){
+                  document.getElementById('inbox_chat').innerHTML = data.html;
+                }else{
+                  console.log('ocurrio un error, vuelva a intentarlo');
+                }
+              },
+              error: function() {
+                  console.log("No se ha podido obtener la información");
+                  }
+          });		
+        
+      }
+    }
+
+    function updateScroll(){
+      $("#msg_history").animate({ scrollTop: $('#msg_history')[0].scrollHeight}, 1000);
+    }
   </script>
 </body>
 

@@ -38,6 +38,8 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/other-circles', 'ExplorerController@index')->name('other-circles');
     Route::get('/messages', 'MessagesController@index')->name('messages');
     Route::post('/messages/createMessage', 'MessagesController@storeMessage');
+    Route::get('/messages/show', 'MessagesController@show');
+    Route::get('/messages/findUser', 'MessagesController@findUser');
 
     Route::get('/news', 'NewsController@index')->name('news');
 
