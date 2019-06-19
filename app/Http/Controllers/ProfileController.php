@@ -126,4 +126,11 @@ class ProfileController extends Controller
     {
         //
     }
+
+    public function test(Request $request)
+    {
+        $dato = $request->input('test');
+
+        echo json_encode("se devolvio $dato del servidor");
+    }
 }

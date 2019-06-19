@@ -497,14 +497,14 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal" >Cerrar</button>
-              <form method="post" action="{{url('/project/approveUser')}}">
-                {{ csrf_field() }}
+              
+                
                 <input id="input_request_id" type="hidden" name="input_request_id">
                 <input id="input_project_id" type="hidden" name="input_project_id">
                 <input id="input_user_id" type="hidden" name="input_user_id">
                 <input type="hidden" name="input_user_approved" value="{{ Auth::user()->id }}">
-                <button class="btn btn-primary">Actualizar Imagen</button>
-              </form>
+                <button class="btn btn-primary" onclick="sendTest()">Actualizar Imagen</button>
+              
               
             </div>
           </div>
@@ -570,6 +570,25 @@
      function seeModalUploadImage(e){
 
       $('#editImage').modal('show');
+     }
+
+     function sendTest(){
+       console.log('TEST');
+
+       $.ajax({
+              type:'GET',
+              url: '/profile/test',
+              data:{
+                  test    :   'xxx',
+              },
+              success: function(respuesta) {
+                data = JSON.parse(respuesta);
+                console.log(data);
+              },
+              error: function() {
+                  console.log("No se ha podido obtener la información");
+                  }
+          });	
      }
   </script>
 </body>
