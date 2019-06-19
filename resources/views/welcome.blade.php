@@ -90,7 +90,7 @@
                     @auth
                         <a href="{{ url('/profile') }}">Inicio</a>
                     @else
-                        <a href="{{ route('form') }}">REGISTRE SU EMPRESA</a>
+                        <a href="{{ route('form') }}">REGISTRE SU EMPRESA!!</a>
                         <a href="{{ route('login') }}">INICIAR SESIÓN</a>
 
                         @if (Route::has('register'))
