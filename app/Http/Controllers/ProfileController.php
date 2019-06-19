@@ -129,7 +129,14 @@ class ProfileController extends Controller
 
     public function test(Request $request)
     {
-        $dato = $request->input('test');
+        $dato = '__';
+
+        // if($request->file('photo-project') != null){
+        //     $file = $request->file('photo-project');
+        //     $path = public_path() . '/projects';
+        //     $fileName = '/projects/'.uniqid() .'_'. $this->cleanUpperName($file->getClientOriginalName());
+        //     $moved = $file->move($path, $fileName);
+        // }
 
         echo json_encode("se devolvio $dato del servidor");
     }

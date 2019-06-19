@@ -484,29 +484,28 @@
       <div class="modal fade" id="editImage" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="requestProject_title">Actualizar imagen</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div id="">
-              <input type="file" name="" id="">
+            <form id="form-photo" enctype="multipart/form-data">
+            {{csrf_field()}}
+              <div class="modal-header">
+                <h5 class="modal-title" id="requestProject_title">Actualizar imagen</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal" >Cerrar</button>
-              
-                
-                <input id="input_request_id" type="hidden" name="input_request_id">
-                <input id="input_project_id" type="hidden" name="input_project_id">
-                <input id="input_user_id" type="hidden" name="input_user_id">
-                <input type="hidden" name="input_user_approved" value="{{ Auth::user()->id }}">
-                <button class="btn btn-primary" onclick="sendTest()">Actualizar Imagen</button>
-              
-              
-            </div>
+              <div class="modal-body">
+                <div id="">
+                <input id="input_user_id" type="hidden" name="input_user_id" value="{{ Auth::user()->id }}">
+                <input type="file" class="form-control" name="photo" >
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" >Cerrar</button>
+                  
+                <button class="btn btn-primary">Actualizar Imagen</button>
+                              
+              </div>
+
+            </form>
           </div>
         </div>
       </div>
@@ -572,24 +571,34 @@
       $('#editImage').modal('show');
      }
 
-     function sendTest(){
-       console.log('TEST');
+     $('#form-photo').on('submit', function(e) {
+        e.preventDefault();
+        console.log('di clic en form');
 
-       $.ajax({
+        let formData = new FormData(this);
+        formData.append('_token', $('input[name=_token]').val());
+        let userId = $('#input_user_id').val();	 
+
+        $.ajax({
               type:'GET',
               url: '/profile/test',
-              data:{
-                  test    :   'xxx',
+              data:formData,
+              cache:false,
+              contentType: false,
+              processData: false,
+              success:function(data){
+                data = JSON.parse(data);
+                console.log('Validation true!',data);
+                
+                  
               },
-              success: function(respuesta) {
-                data = JSON.parse(respuesta);
-                console.log(data);
-              },
-              error: function() {
-                  console.log("No se ha podido obtener la información");
-                  }
+              error: function(jqXHR, text, error){
+                  alert('No se pudo Añadir los datos<br>' + error);
+              }
           });	
-     }
+      });  
+
+     
   </script>
 </body>
 
