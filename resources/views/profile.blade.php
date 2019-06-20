@@ -5,7 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
-  <meta name="author" content="Creative Tim">
+  <meta name="author" content="WA">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Perfil - WARMY ARMY</title>
   <!-- Favicon -->
   <link href="{{ asset('img/brand/favicon.png')}}" rel="icon" type="image/png">
@@ -493,10 +494,11 @@
                 </button>
               </div>
               <div class="modal-body">
-                <div id="">
-                <input id="input_user_id" type="hidden" name="input_user_id" value="{{ Auth::user()->id }}">
-                <input type="file" class="form-control" name="photo" >
-                </div>
+                <img id="img-preview">
+                
+                <input id="user_photo" type="hidden" name="user_photo" value="{{ Auth::user()->id }}">
+                <input id="photo" type="file" class="form-control" name="photo" >
+                
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" >Cerrar</button>
@@ -576,16 +578,31 @@
         console.log('di clic en form');
 
         let formData = new FormData(this);
-        formData.append('_token', $('input[name=_token]').val());
-        let userId = $('#input_user_id').val();	 
+        //formData.append('file', file);
+        //formData.append('_token', $('input[name=_token]').val());
+        let user_photo = $('#user_photo').val();	
+        let photo = $('#photo').prop("files");
+        console.log(photo);
+        
+        console.log(user_photo); 
 
         $.ajax({
-              type:'GET',
+              type:'POST',
+              dataType: "json",
+              contentType: "application/json; charset=utf-8",
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
               url: '/profile/test',
-              data:formData,
-              cache:false,
-              contentType: false,
-              processData: false,
+              data:{
+                //formData
+                user_photo: user_photo,
+                //photo: photo,
+              },
+             // cache:false,
+              //contentType: false,
+              //processData: false,
+              
               success:function(data){
                 data = JSON.parse(data);
                 console.log('Validation true!',data);

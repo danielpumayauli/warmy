@@ -30,7 +30,7 @@ Route::get('/project/{circleId}', 'ProjectController@show');
 Route::middleware(['auth'])->group(function (){
     Route::get('/profile', 'ProfileController@index')->name('profile');
 
-    Route::get('/profile/test', 'ProfileController@test');
+    Route::post('/profile/test', 'ProfileController@test');
 
     Route::get('/my-circles', 'CircleController@index')->name('my-circles');
 

@@ -414,6 +414,11 @@ e.preventDefault();
           chart: {
               type: 'column'
           },
+          colors: [
+            '#f15c80', // rosa
+            '#7cb5ec' // azul              
+              
+          ],
           title: {
               text: 'Participación por género'
           },
