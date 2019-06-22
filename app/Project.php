@@ -10,7 +10,7 @@ class Project extends Model
 {
     protected $fillable =[
 
-        "name", "description","goals","circle_id","is_active","user_id"
+        "name", "description","goals","circle_id","is_active","user_id","picture","image","shortname"
     ];
 
     public function circles()

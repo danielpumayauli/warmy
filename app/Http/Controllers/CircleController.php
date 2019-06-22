@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Helpers\Helper;
 
 use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Auth;
@@ -87,31 +88,18 @@ class CircleController extends Controller
      */
     public function store(Request $request)
     {
-        $request->name = preg_replace('/\s+/', ' ', $request->name);
-        $this->validate($request, [
-            'name' => [
-                'max:255',
-                    Rule::unique('projects')->where(function ($query) {
-                    return $query->where('is_active', 1);
-                }),
-            ],
-        ]);
 
-        // crear func para obtener su image (null), y shortname
-        
-        $warmy_data['name'] = $request->name;
-        $warmy_data['description'] = $request->description;
-        $warmy_data['goals'] = $request->goals;
-        $warmy_data['circle_id'] = $request->circle_id;
-        $warmy_data['is_active'] = true;
+		
+        $picture = Helper::uploadFile('picture', 'logo');
+        $request->merge(['image' => $picture]);
         $user_id=Auth::user()->id;
-        $warmy_data['user_id'] = $user_id;
+		$request->merge(['user_id' => $user_id]);
+		
 
-   
 
-       $projectNew = Project::create($warmy_data);
+   $projectNew = Project::create($request->input());
 
-       // Insertando en tabla circle_project (para cuando un proyecto pertenezca a varios circulos)        
+ // Insertando en tabla circle_project (para cuando un proyecto pertenezca a varios circulos)        
        $newProjectInCircle = DB::table('circle_project')->insertGetId(
         array('project_id' => $projectNew->id, 
                 'circle_id' => $request->circle_id,
@@ -130,7 +118,7 @@ class CircleController extends Controller
                 ->where('id', $projectNew->id)
                 ->update(['participants' => 1]);
 
-        return redirect('my-circles')->with('message', 'Data inserted successfully');
+        return redirect('my-circles')->with('message', 'Se registro satisfactoriamente');
     }
 
     /**

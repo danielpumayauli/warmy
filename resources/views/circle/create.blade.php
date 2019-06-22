@@ -271,7 +271,8 @@
                 <div class="pl-lg-4">
                   <div class="row">
    
-                    {!! Form::open(['route' => 'circle.store', 'method' => 'post']) !!}
+              
+					  {!! Form::open(['route' => 'circle.store', 'method' => 'post', 'files' => true, 'id' => 'circles-form']) !!}
     <div class="col-md-12">
                       <div class="form-group">
                         <label class="form-control-label" for="input-name">T&iacute;tulo</label>
@@ -287,6 +288,7 @@
                       </div>
                     </div>             
 
+										
 
 
                     <div class="col-md-12">
@@ -302,6 +304,18 @@
                         {{Form::textarea('goals',null, array('required' => 'required', 'class' => 'form-control', 'rows' => 4, 'cols' => 40))}}
                       </div>
                     </div>
+
+					
+             <div class="col-md-12">
+                                <div class="form-group">
+                                    <label><strong>Logo</strong> </label>
+                                    <input type="file" name="picture" class="form-control">
+                                    @if($errors->has('picture'))
+                                        <span>
+                                           <strong>{{ $errors->first('picture') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
 
 
 
