@@ -96,7 +96,7 @@
       <div class="row" style="margin: 40px 0;">
         <div class="col-md-4">
           @if( isset(Auth::user()->id) )
-            <img src="{{ $publicInfo[0]->image }}" alt="{{ $publicInfo[0]->name }}" style="width:100%;">
+            <img src="/storage/logo/{{ (($publicInfo[0]->image != null) ? $publicInfo[0]->image : 'default.png') }}" alt="{{ $publicInfo[0]->name }}" style="width:100%;">
           @endif
           <br>
           <div id="description" >

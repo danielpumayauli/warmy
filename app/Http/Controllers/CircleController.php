@@ -96,17 +96,16 @@ class CircleController extends Controller
      */
     public function store(Request $request)
     {
-
-		
-        $picture = Helper::uploadFile('picture', 'logo');
-        $request->merge(['image' => $picture]);
         $user_id=Auth::user()->id;
-		$request->merge(['user_id' => $user_id]);
-		
+        $request->merge(['user_id' => $user_id]);
+        $picture = null;
 
-
-        //$projectNew = Project::create($request->input());
-
+        if(!empty(request()->file())){
+            $picture = Helper::uploadFile('picture', 'public/logo');
+        }
+        
+        $request->merge(['image' => $picture]);
+        
         $newProjectId = DB::table('projects')->insertGetId(
             array(  'name' => $request->name,
                     'description' => $request->description,
@@ -120,24 +119,24 @@ class CircleController extends Controller
                      )
             );
 
- // Insertando en tabla circle_project (para cuando un proyecto pertenezca a varios circulos)        
-       $newProjectInCircle = DB::table('circle_project')->insertGetId(
-        array('project_id' => $newProjectId, 
-                'circle_id' => $request->circle_id,
-                'created_at' => new \dateTime,
-                'updated_at' => new \dateTime )
-        );
+            // Insertando en tabla circle_project (para cuando un proyecto pertenezca a varios circulos)        
+            $newProjectInCircle = DB::table('circle_project')->insertGetId(
+                array('project_id' => $newProjectId, 
+                        'circle_id' => $request->circle_id,
+                        'created_at' => new \dateTime,
+                        'updated_at' => new \dateTime )
+                );
 
-       // Insertando en tabla project_user al creador (primer miembro)
-       $id = DB::table('project_user')->insertGetId(
-            array('user_id' => Auth::user()->id, 
-                    'project_id' => $newProjectId)
-        );
+            // Insertando en tabla project_user al creador (primer miembro)
+            $id = DB::table('project_user')->insertGetId(
+                    array('user_id' => Auth::user()->id, 
+                            'project_id' => $newProjectId)
+                );
 
-        //Se incrementa la cantidad de parcipantes
-        DB::table('projects')
-                ->where('id', $newProjectId)
-                ->update(['participants' => 1]);
+            //Se incrementa la cantidad de parcipantes
+            DB::table('projects')
+                    ->where('id', $newProjectId)
+                    ->update(['participants' => 1]);
 
         return redirect('my-circles')->with('message', 'Se registro satisfactoriamente');
     }
