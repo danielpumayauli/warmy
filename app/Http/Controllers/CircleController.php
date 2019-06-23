@@ -25,13 +25,21 @@ class CircleController extends Controller
         // $projects = auth()->user()->projects->join('circle_project', 'circle_project.id', '=', 'circles.id');
         
         $projects = DB::table('projects')
-                    ->select('projects.id AS project_id','projects.name AS project_name','projects.shortName AS project_shortName','projects.participants AS project_participants',
-                            'circles.name AS circle_name')
-                    ->join('project_user', 'project_user.project_id', '=', 'projects.id')
-                    ->leftJoin('circle_project','circle_project.project_id','=','projects.id')
-                    ->leftJoin('circles','circles.id','=','circle_project.circle_id')
-                    ->where('project_user.user_id',auth()->user()->id)
-                    ->get();
+                        ->select('projects.id AS project_id',
+                                    'projects.name AS project_name',
+                                    'projects.shortName AS project_shortName',
+                                    'projects.description AS project_description',
+                                    'projects.goals AS project_goals',
+                                    'projects.participants AS project_participants',
+                                'circles.name AS circle_name',
+                                'users.name AS author_name',
+                                'users.lastName AS author_lastName')
+                        ->join('project_user', 'project_user.project_id', '=', 'projects.id')
+                        ->leftJoin('users', 'users.id', '=', 'projects.user_id')
+                        ->leftJoin('circle_project','circle_project.project_id','=','projects.id')
+                        ->leftJoin('circles','circles.id','=','circle_project.circle_id')
+                        ->where('project_user.user_id',auth()->user()->id)
+                        ->get();
                     // ->toSQL();
         // dd($projects);
         
@@ -97,11 +105,24 @@ class CircleController extends Controller
 		
 
 
-   $projectNew = Project::create($request->input());
+        //$projectNew = Project::create($request->input());
+
+        $newProjectId = DB::table('projects')->insertGetId(
+            array(  'name' => $request->name,
+                    'description' => $request->description,
+                    'image' =>  $request->image,
+                    'goals' => $request->goals,
+                    'user_id' =>$request->user_id,
+                    'circle_id' => $request->circle_id,
+                    'shortName' => str_slug($request->name,'_'),
+                    'created_at' => new \dateTime,
+                    'updated_at' => new \dateTime
+                     )
+            );
 
  // Insertando en tabla circle_project (para cuando un proyecto pertenezca a varios circulos)        
        $newProjectInCircle = DB::table('circle_project')->insertGetId(
-        array('project_id' => $projectNew->id, 
+        array('project_id' => $newProjectId, 
                 'circle_id' => $request->circle_id,
                 'created_at' => new \dateTime,
                 'updated_at' => new \dateTime )
@@ -110,12 +131,12 @@ class CircleController extends Controller
        // Insertando en tabla project_user al creador (primer miembro)
        $id = DB::table('project_user')->insertGetId(
             array('user_id' => Auth::user()->id, 
-                    'project_id' => $projectNew->id)
+                    'project_id' => $newProjectId)
         );
 
         //Se incrementa la cantidad de parcipantes
         DB::table('projects')
-                ->where('id', $projectNew->id)
+                ->where('id', $newProjectId)
                 ->update(['participants' => 1]);
 
         return redirect('my-circles')->with('message', 'Se registro satisfactoriamente');

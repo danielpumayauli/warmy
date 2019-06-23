@@ -301,7 +301,7 @@
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">PROYECTO</th>
-                    <th scope="col">CÍRCULO</th>
+                    <th scope="col">ACTIVIDAD</th>
                     <th scope="col">ESTADO</th>
                     <th scope="col">INTEGRANTES</th>
                     <th scope="col">DISPONIBILIDAD</th>
@@ -310,65 +310,7 @@
                 </thead>
                 <tbody>
                   
-                  <!-- <tr class="animated fadeInLeft">
-                    <th scope="row">
-                      <div class="media align-items-center">
-                        
-                        <div class="media-body">
-                          <span class="mb-0 text-sm" style="cursor: pointer;">proyecto2</span>
-                        </div>
-                      </div>
-                    </th>
-                    <td>
-                    StartUp
-                    </td>
-                    <td>
-                      <span class="badge badge-dot">
-                        <i class="bg-success"></i> completed
-                      </span>
-                    </td>
-                    <td>
-                      <div class="avatar-group">
-                        <a href="#" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="Ryan Tompson">
-                          <img alt="Image placeholder" src="{{ asset('img/theme/team-1-800x800.jpg') }}" class="rounded-circle">
-                        </a>
-                        <a href="#" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="Romina Hadid">
-                          <img alt="Image placeholder" src="{{ asset('img/theme/team-2-800x800.jpg') }}" class="rounded-circle">
-                        </a>
-                        <a href="#" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="Alexander Smith">
-                          <img alt="Image placeholder" src="{{ asset('img/theme/team-3-800x800.jpg') }}" class="rounded-circle">
-                        </a>
-                        <a href="#" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="Jessica Doe">
-                          <img alt="Image placeholder" src="{{ asset('img/theme/team-4-800x800.jpg') }}" class="rounded-circle">
-                        </a>
-                        <a href="#" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="Jessica Doe">
-                          <img alt="Image placeholder" src="{{ asset('img/theme/team-1-800x800.jpg') }}" class="rounded-circle">
-                        </a>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <span class="mr-2">100%</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="text-right">
-                      <div class="dropdown">
-                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fas fa-ellipsis-v"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr> -->
+                 
                   @forelse ($projects as $project)
                     @php {{
                       switch($project->project_participants){
@@ -395,17 +337,21 @@
                           <span class="mb-0 text-sm" id="getCircle" style="cursor: pointer;" 
                                 
                                 data-name="{{ $project->project_name }}" 
-                                data-shortName="{{ $project->project_shortName }}"
-                                data-circle="{{ $project->circle_name }}"
+                                data-shortName="{{ $project->project_shortName }}" 
+                                data-description="{{ $project->project_description }}" 
+                                data-goals="{{ $project->project_goals }}" 
+                                data-circle="{{ $project->circle_name }}" 
+                                data-author-name="{{ $project->author_name }}" 
+                                data-author-lastName="{{ $project->author_lastName }}"
                                 data-participants="{{ $project->project_participants }}" 
-                                onclick="getInfoProject(this)">{{ $project->project_name }}</span>,
-                          <span style="color: blue">{{ $project->project_participants }}</span>
+                                onclick="getInfoProject(this)">{{ $project->project_name }}</span><br>
+                                <span class="badge badge-info">{{ $project->circle_name }}</span>
                           
                         </div>
                       </div>
                     </th>
                     <td>
-                      {{ $project->circle_name }}
+                      <a href="/project/{{ $project->project_shortName }}">Ver actividad</a>
                     </td>
                     <td>
                       <span class="badge badge-dot mr-4">
@@ -468,11 +414,12 @@
             </div>
             <div class="modal-body">
               <div id="projectInfoDesc">
+                
               </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" onclick="closeProjectInfo()">Cerrar</button>
-              <a id="projectInfoUrl" type="button" class="btn btn-primary" target="_blank">Ver más</a>
+              <a id="projectInfoUrl" type="button" class="btn btn-primary" target="_blank">Ver actividad</a>
             </div>
           </div>
         </div>
@@ -535,9 +482,13 @@
       let projectShortName = $(e).attr("data-shortName");
       let projectCircle = $(e).attr("data-circle");
       let projectParticipants = $(e).attr("data-participants");
+      let projectIntro = `<p><strong>Creado por:</strong> ${$(e).attr("data-author-name")} ${$(e).attr("data-author-lastName")}</p>
+                          <p><strong>Descripción:</strong> <br> ${$(e).attr("data-description")}</p>
+                          <p><strong>Objetivos:</strong> <br> ${$(e).attr("data-goals")}</p>
+                          <p><strong>N° de Participantes: </strong> ${projectParticipants}</p>`;
 
       $('#projectInfoTitle').html(projectName);
-      $('#projectInfoDesc').html('<p>Participantes aquí: '+ projectParticipants +'</p>');
+      $('#projectInfoDesc').html(projectIntro);
       $('#projectInfoUrl').attr('href','/project/'+projectShortName);
       $('#teamSelected').html('<h6 class="navbar-heading text-muted text-center">MI EQUIPO</h6>');
       $(`#users-${projectShortName}`).clone().appendTo('#teamSelected');

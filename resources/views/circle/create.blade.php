@@ -115,7 +115,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#">
+            <a class="nav-link active" href="/my-circles">
               <i class="ni ni-planet text-blue"></i> Mis Círculos
             </a>
           </li>
@@ -275,15 +275,15 @@
 					  {!! Form::open(['route' => 'circle.store', 'method' => 'post', 'files' => true, 'id' => 'circles-form']) !!}
     <div class="col-md-12">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-name">T&iacute;tulo</label>
+                        <label class="form-control-label" for="input-name" title="Obligatorio">T&iacute;tulo <span style="color:red">*</span></label>
                {{Form::text('name',null,array('required' => 'required', 'class' => 'form-control form-control-alternative'))}}
                       </div>
                     </div>
 
         <div class="col-md-12">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-circle">C&iacute;rculo de Integraci&oacute;n</label>
-                        {{Form::select('circle_id', $warmy_categories, null, ['class' => 'form-control','placeholder' => 'Seleccione Circulo de integración'])}}
+                        <label class="form-control-label" for="input-circle" title="Obligatorio">C&iacute;rculo de Integraci&oacute;n <span style="color:red">*</span></label>
+                        {{Form::select('circle_id', $warmy_categories, null, ['required' => 'required', 'class' => 'form-control','placeholder' => 'Seleccione Circulo de integración'])}}
 
                       </div>
                     </div>             
@@ -293,14 +293,14 @@
 
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-address">Descripci&oacute;n</label>
+                        <label class="form-control-label" for="input-address" title="Obligatorio">Descripci&oacute;n <span style="color:red">*</span></label>
                         {{Form::textarea('description',null, array('required' => 'required', 'class' => 'form-control', 'rows' => 4, 'cols' => 40))}}
                       </div>
                     </div>
 
                      <div class="col-md-12">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-address">Metas</label>
+                        <label class="form-control-label" for="input-address" title="Obligatorio">Metas <span style="color:red">*</span></label>
                         {{Form::textarea('goals',null, array('required' => 'required', 'class' => 'form-control', 'rows' => 4, 'cols' => 40))}}
                       </div>
                     </div>
@@ -308,7 +308,7 @@
 					
              <div class="col-md-12">
                                 <div class="form-group">
-                                    <label><strong>Logo</strong> </label>
+                                    <label title="Opcional"><strong>Logo</strong> </label>
                                     <input type="file" name="picture" class="form-control">
                                     @if($errors->has('picture'))
                                         <span>
