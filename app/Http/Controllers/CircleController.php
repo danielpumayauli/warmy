@@ -113,7 +113,7 @@ class CircleController extends Controller
                     'goals' => $request->goals,
                     'user_id' =>$request->user_id,
                     'circle_id' => $request->circle_id,
-                    'shortName' => str_slug($request->name,'_'),
+                    'shortName' => $this->verifyShortNameProject($request->name),
                     'created_at' => new \dateTime,
                     'updated_at' => new \dateTime
                      )
@@ -187,5 +187,15 @@ class CircleController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    protected function verifyShortNameProject($name)
+    {
+        $name = str_slug($name,'_');
+        $coincidences = DB::select("SELECT id FROM `projects` where shortName = '{$name}'");        
+        if(!empty($coincidences)){
+            $name.= '_'.uniqid();
+        }
+        return $name;
     }
 }
