@@ -394,7 +394,7 @@
                     
                     @forelse($projects as $project)
                     <div class="h5 font-weight-300 pd-l-5em">
-                      <span>{{ $project->name }} <i>({{ $project->circle_name }})</i> </span>
+                      <a href="/project/{{ $project->shortName }}">{{ $project->name }} <i>({{ $project->circle_name }})</i> </a>
                     </div>
                     @empty
                     <div class="h5 font-weight-300 pd-1-5em">
@@ -434,7 +434,7 @@
                   </div>
                   <div class="col-md-9" >
                     <p>{{ $contact->name .' '.$contact->lastName }}<br>
-                    <i style="font-size: 12px; "> Del proyecto: {{ $contact->project_name }}</i></p>
+                    <i style="font-size: 12px; "> Del círculo: {{ $contact->project_name }}</i></p>
                   </div>
                   <hr>
                   

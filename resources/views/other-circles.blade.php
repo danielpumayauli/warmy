@@ -317,7 +317,7 @@
         <div class="container-fluid mt--7">
           
           <div class="row mt-5">
-            <div class="col-xl-8 mb-5 mb-xl-0">
+            <div class="col-xl-10 mb-5 mb-xl-0">
               <div class="card shadow">
                 <div class="card-header border-0">
                   <div class="row align-items-center">
@@ -333,7 +333,7 @@
                       @forelse($projects as $project)
                       <div class="row project__disponible" style="padding: 10px;">
                         <div class="col-md-8">
-                         <p>{{ $project->name }}. {{ $project->participants }} <br>
+                         <p>{{ $project->name }}. <small>{{ $project->participants }} {{ (($project->participants > 1) ? 'participantes':'participante' ) }} en este círculo.</small> <br>
 
                         
                          
