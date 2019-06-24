@@ -39,9 +39,9 @@ class CircleController extends Controller
                         ->leftJoin('circle_project','circle_project.project_id','=','projects.id')
                         ->leftJoin('circles','circles.id','=','circle_project.circle_id')
                         ->where('project_user.user_id',auth()->user()->id)
-                        ->get();
+                       ->get();
                     // ->toSQL();
-        // dd($projects);
+         // dd($projects);
         
         $usersProjects = DB::select('select pp.project_id,u.id,u.name,u.lastName,u.image from 
                                     (select pu.project_id 

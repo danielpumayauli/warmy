@@ -21,6 +21,7 @@
 </head>
 
 <body>
+  
   <!-- Sidenav -->
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main" >
     <div class="container-fluid">
@@ -177,25 +178,7 @@
         </ul>
         <!-- Divider -->
         <hr class="my-3">
-        <!-- Heading -->
-        <!-- Navigation -->
-        <!-- <ul class="navbar-nav mb-md-3">
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
-              <i class="ni ni-spaceship"></i> Getting started
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html">
-              <i class="ni ni-palette"></i> Foundation
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html">
-              <i class="ni ni-ui-04"></i> Components
-            </a>
-          </li>
-        </ul> -->
+        
       </div>
     </div>
   </nav>
@@ -320,7 +303,7 @@
         <div class="container-fluid mt--7">
           
           <div class="row mt-5">
-            <div class="col-xl-8 mb-5 mb-xl-0">
+            <div class="col-xl-10 mb-5 mb-xl-0">
               <div class="card shadow">
                 <div class="card-header border-0">
                   <div class="row align-items-center">
@@ -330,13 +313,117 @@
                   </div>
                 </div>
                 <div class="table-responsive">
-                  <!-- Add personal details from this user here! -->
-                  
+
+                  <!-- Lista de Actividades -->
+                  @if(sizeof($circles) > 0)
+                  <section id="tabs" class="project-tab">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <nav>
+                                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                      @foreach ($circles as $key => $circle)
+                                        
+                                        <a class="nav-item nav-link {{ (($key == 0) ? 'active' : '') }}" id="nav-{{$circle->circle_name}}-tab" data-toggle="tab" href="#nav-{{$circle->circle_name}}" role="tab" aria-controls="nav-{{$circle->circle_name}}" aria-selected="{{ (($key == 0) ? 'true' : 'false') }}">{{$circle->circle_name}}</a>
+                                        
+                                      @endforeach
+                                    </div>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                  @foreach($circles as $key => $circle)
+                                    <div class="tab-pane fade show {{ (($key == 0) ? 'active' : '') }}" id="nav-{{$circle->circle_name}}" role="tabpanel" aria-labelledby="nav-{{$circle->circle_name}}-tab">
+                                        <table class="table" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Proyecto</th>
+                                                    <th>N Actividades</th>
+                                                    <th>Detalle</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                              @foreach($projects as $project)
+                                                @if($project->circle_name == $circle->circle_name)
+                                                <tr>
+                                                    <td><a href="/project/{{$project->project_shortName}}">{{ $project->project_name }}</a></td>
+                                                    <td> 5</td>
+                                                    <td>Ver</td>
+                                                </tr>
+                                                @endif
+                                              @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                  @endforeach
+                                    <!--<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                        <table class="table" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Project Name</th>
+                                                    <th>Employer</th>
+                                                    <th>Time</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><a href="#">Work 1</a></td>
+                                                    <td>Doe 2</td>
+                                                    <td>john@example.com</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#">Work 2</a></td>
+                                                    <td>Moe</td>
+                                                    <td>mary@example.com</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#">Work 3</a></td>
+                                                    <td>Dooley</td>
+                                                    <td>july@example.com</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                        <table class="table" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Contest Name</th>
+                                                    <th>Date</th>
+                                                    <th>Award Position</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><a href="#">Work 1</a></td>
+                                                    <td>Doe 3</td>
+                                                    <td>john@example.com</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#">Work 2</a></td>
+                                                    <td>Moe</td>
+                                                    <td>mary@example.com</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#">Work 3</a></td>
+                                                    <td>Dooley</td>
+                                                    <td>july@example.com</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                @else
+                <p style="padding-left: 2em;">Sin actividad para mostrar. Debe participar en un círculo para comenzar.</p>
+                @endif
+                  <!--  fin lista hardcode -->
                 </div>
               </div>
             </div>
-            <div class="col-xl-4">
-              <div class="card shadow">
+            <div class="col-xl-2">
+              <!--<div class="card shadow">
                 <div class="card-header border-0">
                   <div class="row align-items-center">
                     <div class="col">
@@ -348,10 +435,9 @@
                   </div>
                 </div>
                 <div class="table-responsive">
-                  <!-- Add new contacts for this user here! -->
                   
                 </div>
-              </div>
+              </div>--> 
             </div>
           </div>
           <!-- Footer -->

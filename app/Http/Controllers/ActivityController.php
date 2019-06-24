@@ -14,6 +14,35 @@ class ActivityController extends Controller
      */
     public function index()
     {
+        $projects = DB::table('projects')
+                        ->select(   'circles.name AS circle_name',
+                                    'projects.id AS project_id',
+                                    'projects.name AS project_name',
+                                    'projects.shortName AS project_shortName',
+                                    'projects.description AS project_description',
+                                    'projects.goals AS project_goals',
+                                    'projects.participants AS project_participants'
+                                )
+                        ->join('project_user', 'project_user.project_id', '=', 'projects.id')
+                        
+                        ->leftJoin('circle_project','circle_project.project_id','=','projects.id')
+                        ->leftJoin('circles','circles.id','=','circle_project.circle_id')
+                        ->where('project_user.user_id',auth()->user()->id)
+                        ->orderBy('circle_name')
+                        ->get();
+                    //->toSQL();
+       // dd($projects);
+
+       $circles = DB::table('projects')
+                        ->select(   'circles.name AS circle_name')
+                        ->join('project_user', 'project_user.project_id', '=', 'projects.id')                        
+                        ->leftJoin('circle_project','circle_project.project_id','=','projects.id')
+                        ->leftJoin('circles','circles.id','=','circle_project.circle_id')
+                        ->where('project_user.user_id',auth()->user()->id)
+                        ->groupBy('circle_name')
+                        ->orderBy('circle_name')
+                        ->get();
+
         $request_projects = DB::select("SELECT pr.id AS request_id, 
                                     pr.project_id as project_id, 
                                     pr.user_id as user_id, 
@@ -31,7 +60,10 @@ class ActivityController extends Controller
                             ");
         $numRequest = sizeof($request_projects);
 
-        return view('activity')->with(compact('request_projects','numRequest'));
+
+       
+
+        return view('activity')->with(compact('projects','circles','request_projects','numRequest'));
     }
 
     /**
