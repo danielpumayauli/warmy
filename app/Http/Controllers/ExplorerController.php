@@ -18,11 +18,11 @@ class ExplorerController extends Controller
     {
 
         $projects = DB::select('SELECT p.*, c.name AS circle_name,pr.state AS request_state
-        FROM projects p
-        LEFT JOIN circle_project cp ON p.id = cp.project_id
-        LEFT JOIN circles c ON c.id = cp.circle_id
-        LEFT JOIN project_requests pr on pr.project_id = p.id and pr.user_id =  '.auth()->user()->id.'
-        WHERE p.id NOT IN (SELECT project_id FROM project_user WHERE user_id = '.auth()->user()->id.' GROUP BY project_id)');
+                            FROM projects p
+                            LEFT JOIN circle_project cp ON p.id = cp.project_id
+                            LEFT JOIN circles c ON c.id = cp.circle_id
+                            LEFT JOIN project_requests pr on pr.project_id = p.id and pr.user_id =  '.auth()->user()->id.'
+                            WHERE p.id NOT IN (SELECT project_id FROM project_user WHERE user_id = '.auth()->user()->id.' GROUP BY project_id)');
 
         $request_projects = DB::select("SELECT pr.id AS request_id, 
                                                 pr.project_id as project_id, 
@@ -40,9 +40,13 @@ class ExplorerController extends Controller
                                         WHERE pr.project_id IN (SELECT project_id FROM project_user WHERE user_id = ".auth()->user()->id." GROUP BY project_id) AND pr.state = 0 
                                         ");
         $numRequest = sizeof($request_projects);
+
+        $groups = $this->groupByCategory($projects);
+
+        //dd($groups);
         
 
-        return view('other-circles')->with(compact('projects','request_projects','numRequest'));
+        return view('other-circles')->with(compact('groups','request_projects','numRequest'));
     }
 
     /**
@@ -109,5 +113,35 @@ class ExplorerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    protected function groupByCategory($projects)
+    {
+        $comercials = $laborals = $socials = $startups = $groups = array();
+        foreach($projects as $project){
+            switch ($project->circle_name) {
+                case 'Comercial':
+                    $comercials[] = $project;
+                break;
+                case 'Laboral':
+                    $laborals[] = $project;
+                break;
+                case 'Social':
+                    $socials[] = $project;
+                break;
+                case 'StartUp':
+                    $startups[] = $project;
+                break;    
+                default:
+                    # code...
+                    break;
+            }
+        }
+        $groups[] = $comercials;
+        $groups[] = $laborals;
+        $groups[] = $socials;
+        $groups[] = $startups;
+
+        return $groups;
     }
 }

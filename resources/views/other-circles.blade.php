@@ -21,6 +21,21 @@
 </head>
 
 <body>
+  <style>
+    a.list-group-item {
+      height:auto;
+      min-height:220px;
+    }
+    a.list-group-item.active small {
+        color:#fff;
+    }
+    .stars {
+        margin:20px auto 1px;    
+    }
+    .list-group-item-text{
+      font-size:10px;
+    }
+  </style>
   <!-- Sidenav -->
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main" >
     <div class="container-fluid">
@@ -177,25 +192,6 @@
         </ul>
         <!-- Divider -->
         <hr class="my-3">
-        <!-- Heading -->
-        <!-- Navigation -->
-        <!-- <ul class="navbar-nav mb-md-3">
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
-              <i class="ni ni-spaceship"></i> Getting started
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html">
-              <i class="ni ni-palette"></i> Foundation
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html">
-              <i class="ni ni-ui-04"></i> Components
-            </a>
-          </li>
-        </ul> -->
       </div>
     </div>
   </nav>
@@ -317,64 +313,173 @@
         <div class="container-fluid mt--7">
           
           <div class="row mt-5">
-            <div class="col-xl-10 mb-5 mb-xl-0">
+            <div class="col-xl-12 mb-5 mb-xl-0">
               <div class="card shadow">
                 <div class="card-header border-0">
                   <div class="row align-items-center">
                     <div class="col">
-                      <h3 class="mb-0 data-info-person">EXPLORAR</h3>
+                      <h3 class="mb-0 data-info-person">EXPLORAR CÍRCULOS</h3>
                     </div>
                   </div>
                 </div>
                 <div class="table-responsive">
                   <div style="width: 100%; background: ">
-                  <span style="font-size: 12px; padding-left: 0.6rem;">Aqui se muestran proyectos disponibles según sus círculos. Elija uno según sus intereses</span>
+                  <span style="font-size: 12px; padding-left: 0.6rem;">Aqui se muestran círculos disponibles por categoría. Elija uno según sus intereses</span>
                     <div id="all-projects" style="background:;">
-                      @forelse($projects as $project)
-                      <div class="row project__disponible" style="padding: 10px;">
-                        <div class="col-md-8">
-                         <p>{{ $project->name }}. <small>{{ $project->participants }} {{ (($project->participants > 1) ? 'participantes':'participante' ) }} en este círculo.</small> <br>
 
-                        
-                         
-                               @if (($project->circle_name) === "Comercial")
-
-                                   <span class="badge badge-danger">COMERCIAL</span>
-
-                                @elseif (($project->circle_name) === "Laboral")
-                                     <span class="badge badge-info">LABORAL</span>
- 
-                                 @elseif (($project->circle_name) === "Social")
-                                     <span class="badge badge-warning" style="background-color: yellow !important">SOCIAL</span>
-                                       
-                                 @elseif (($project->circle_name) === "StartUp")
-                                     <span class="badge badge-success">STARTUP</span>
-                         
-                         @endif
-                         
-                         </p>
-                          
+                      <!-- LISTA -->
+                      <div class="container">
+                        <div class="row project__disponible">                          
+                          <div class="col-sm-6 col-md-3">
+                            <h4 class="text-center data-info-person">Comercial</h4>
+                            @forelse($groups[0] as $comercial)
+                            <div class="list-group">
+                              <div class="list-group-item" style="border-color: rgba(251, 175, 190, .5) ">
+                                <div class="row">
+                                  <div class="col-md-12 col-lg-8">
+                                      <h4 class="list-group-item-heading"> {{ $comercial->name }} </h4>
+                                      <p class="list-group-item-text">
+                                      {{ $comercial->description }}             
+                                      </p>
+                                      <small style="font-size:10px">{{ $comercial->participants }} {{ (($comercial->participants > 1) ? 'participantes':'participante' ) }}</small>
+                                  </div>                                
+                                  <div class="col-sm-12 col-md-4 text-center" >
+                                    @if($comercial->request_state === 0)
+                                    <button class="btn btn-primary" style="font-size:8px; padding: 3px;" disabled>Solicitud <br> Enviada</button>
+                                    
+                                    @else
+                                    <form method="post" action="{{url('/project/registerUser')}}">
+                                      {{ csrf_field() }}
+                                      <input type="hidden" name="project_id" value="{{$comercial->id}}">
+                                      <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                      <button class="btn btn-primary" style="font-size:8px; padding: 3px;">Agregarme</button>
+                                    </form>
+                                    @endif
+                                      
+                                      
+                                  </div>                                
+                                </div>
+                              </div>
+                            </div>
+                            @empty
+                            <div class="list-group text-center">
+                              <br><small>Aún no hay circulos comerciales para mostrar</small><br>
+                              <a href="circle/create" class="btn btn-primary" style="font-size:8px; padding: 3px;">Crear uno nuevo</a>
+                            </div>
+                            @endforelse
+                          </div>
+                          <div class="col-sm-6 col-md-3">
+                            <h4 class="text-center data-info-person">Laboral</h4>
+                            @forelse($groups[1] as $laboral)
+                            <div class="list-group">
+                              <div class="list-group-item" style="border-color: rgba(136, 230, 247, .5);">
+                                <div class="row">
+                                  <div class="col-md-12 col-lg-8">
+                                      <h4 class="list-group-item-heading"> {{ $laboral->name }} </h4>
+                                      <p class="list-group-item-text">
+                                      {{ $laboral->description }}                      
+                                      </p>
+                                      <small style="font-size:10px">{{ $laboral->participants }} {{ (($laboral->participants > 1) ? 'participantes':'participante' ) }}</small>
+                                  </div>                                
+                                  <div class="col-sm-12 col-md-4 text-center" >
+                                    @if($laboral->request_state === 0)
+                                    <button class="btn btn-primary" style="font-size:8px; padding: 3px;" disabled>Solicitud <br> Enviada</button>
+                                    
+                                    @else
+                                    <form method="post" action="{{url('/project/registerUser')}}">
+                                      {{ csrf_field() }}
+                                      <input type="hidden" name="project_id" value="{{$laboral->id}}">
+                                      <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                      <button class="btn btn-primary" style="font-size:8px; padding: 3px;">Agregarme</button>
+                                    </form>
+                                    @endif
+                                      
+                                  </div>                                
+                                </div>
+                              </div>
+                            </div>
+                            @empty
+                            <div class="list-group text-center">
+                              <br><small>Aún no hay circulos comerciales para mostrar</small><br>
+                              <a href="circle/create" class="btn btn-primary" style="font-size:8px; padding: 3px;">Crear uno nuevo</a>
+                            </div>
+                            @endforelse
+                          </div>
+                          <div class="col-sm-6 col-md-3">
+                            <h4 class="text-center data-info-person">Social</h4>
+                            @forelse($groups[2] as $social)
+                            <div class="list-group">
+                              <div class="list-group-item" style="border-color:rgba(240, 255, 132, 0.5);">
+                                <div class="row">
+                                  <div class="col-md-12 col-lg-8">
+                                      <h4 class="list-group-item-heading"> {{ $social->name }} </h4>
+                                      <p class="list-group-item-text">
+                                        {{ $social->description }}            
+                                      </p>
+                                      <small style="font-size:10px">{{ $social->participants }} {{ (($social->participants > 1) ? 'participantes':'participante' ) }}</small>
+                                  </div>                                
+                                  <div class="col-sm-12 col-md-4 text-center" >
+                                    @if($social->request_state === 0)
+                                    <button class="btn btn-primary" style="font-size:8px; padding: 3px;" disabled>Solicitud <br> Enviada</button>
+                                    
+                                    @else
+                                    <form method="post" action="{{url('/project/registerUser')}}">
+                                      {{ csrf_field() }}
+                                      <input type="hidden" name="project_id" value="{{$social->id}}">
+                                      <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                      <button class="btn btn-primary" style="font-size:8px; padding: 3px;">Agregarme</button>
+                                    </form>
+                                    @endif
+                                  </div>                                
+                                </div>
+                              </div>
+                            </div>
+                            @empty
+                            <div class="list-group text-center">
+                              <br><small>Aún no hay circulos comerciales para mostrar</small><br>
+                              <a href="circle/create" class="btn btn-primary" style="font-size:8px; padding: 3px;">Crear uno nuevo</a>
+                            </div>
+                            @endforelse
+                          </div>    
+                          <div class="col-sm-6 col-md-3">
+                            <h4 class="text-center data-info-person">StartUp</h4>
+                            @forelse($groups[3] as $startup)
+                            <div class="list-group">
+                              <div class="list-group-item" style="border-color:rgba(147, 231, 195, .5);">
+                                <div class="row">
+                                  <div class="col-md-12 col-lg-8">
+                                      <h4 class="list-group-item-heading"> {{ $startup->name }} </h4>
+                                      <p class="list-group-item-text">
+                                        {{ $startup->description }}         
+                                      </p>
+                                      <small style="font-size:10px">{{ $startup->participants }} {{ (($startup->participants > 1) ? 'participantes':'participante' ) }}</small>
+                                  </div>                                
+                                  <div class="col-sm-12 col-md-4 text-center" >
+                                  @if($startup->request_state === 0)
+                                    <button class="btn btn-primary" style="font-size:8px; padding: 3px;" disabled>Solicitud <br> Enviada</button>
+                                    
+                                    @else
+                                    <form method="post" action="{{url('/project/registerUser')}}">
+                                      {{ csrf_field() }}
+                                      <input type="hidden" name="project_id" value="{{$startup->id}}">
+                                      <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                      <button class="btn btn-primary" style="font-size:8px; padding: 3px;">Agregarme</button>
+                                    </form>
+                                    @endif
+                                  </div>                                
+                                </div>
+                              </div>
+                            </div>
+                            @empty
+                            <div class="list-group text-center">
+                              <br><small>Aún no hay circulos comerciales para mostrar</small><br>
+                              <a href="circle/create" class="btn btn-primary" style="font-size:8px; padding: 3px;">Crear uno nuevo</a>
+                            </div>
+                            @endforelse
+                          </div>         
                         </div>
-                        <div class="col-md-4">
-                          @if($project->request_state === 0)
-                          <button class="btn btn-primary" disabled>Solicitud Enviada</button>
-                          
-                          @else
-                          <form method="post" action="{{url('/project/registerUser')}}">
-                            {{ csrf_field() }}
-                            <input type="hidden" name="project_id" value="{{$project->id}}">
-                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                            <button class="btn btn-primary">Agregarme</button>
-                          </form>
-                          @endif
-                          
-                        </div>
-                        
-                        
                       </div>
-                      @empty
-                      <p style="text-center">No hay projectos para mostrar</p>
-                      @endforelse
+                      <!-- FIN LISTA -->
                     </div>
 
                   </div>
@@ -383,23 +488,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-xl-4">
-              <!-- <div class="card shadow">
-                <div class="card-header border-0">
-                  <div class="row align-items-center">
-                    <div class="col">
-                      <h3 class="mb-0">CONTACTOS</h3>
-                    </div>
-                    <div class="col text-right">
-                      <a href="#!" class="btn btn-sm btn-primary">Ver todos</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="table-responsive">
-                  
-                </div>
-              </div> -->
-            </div>
+            
           </div>
 
           <!-- Modal -->
