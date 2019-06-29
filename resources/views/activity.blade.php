@@ -337,7 +337,6 @@
                                                 <tr>
                                                     <th>Proyecto</th>
                                                     <th>N Actividades</th>
-                                                    <th>Detalle</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -346,7 +345,6 @@
                                                 <tr>
                                                     <td><a href="/project/{{$project->project_shortName}}">{{ $project->project_name }}</a></td>
                                                     <td> 5</td>
-                                                    <td>Ver</td>
                                                 </tr>
                                                 @endif
                                               @endforeach
