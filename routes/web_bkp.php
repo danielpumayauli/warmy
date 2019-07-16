@@ -15,8 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/list-projects', 'ExplorerController@index2')->name('list-projects');
-
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/form', 'FormController@index')->name('form');
 
@@ -41,9 +39,6 @@ Route::middleware(['auth'])->group(function (){
 
     Route::get('/activity', 'ActivityController@index')->name('activity');
     Route::get('/other-circles', 'ExplorerController@index')->name('other-circles');
-
-    Route::resource('profile', 'ProfileController');
-
     Route::get('/messages', 'MessagesController@index')->name('messages');
     Route::post('/messages/createMessage', 'MessagesController@storeMessage');
     Route::get('/messages/show', 'MessagesController@show');

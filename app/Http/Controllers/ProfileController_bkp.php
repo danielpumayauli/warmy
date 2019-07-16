@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DB; 
-use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
 {
@@ -104,12 +101,7 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $lims_category_data = User::findOrFail($id);
-        //$lims_parent_data = User::where('id',
-          //  $lims_category_data['parent_id'])->first();
-        //$lims_category_data['parent'] = $lims_parent_data['name'];
-        return $lims_category_data;
-       // dd($lims_category_data);
+        //
     }
 
     /**
@@ -119,22 +111,10 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'name' => [
-                'max:255',
-                Rule::unique('users')->ignore($request->profile_id)->where(function ($query) {
-                    return $query->where('is_active', 1);
-                }),
-            ],
-        ]);
-
-        $input = $request->all();
-       $lims_category_data = User::findOrFail($request->profile_id);
-        $lims_category_data->update($input);
-        return redirect('profile')->with('message', 'Data updated successfully');
-    } 
+        //
+    }
 
     /**
      * Remove the specified resource from storage.

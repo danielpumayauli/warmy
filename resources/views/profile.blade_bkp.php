@@ -319,8 +319,7 @@
                   <h3 class="mb-0 data-info-person">DATOS PERSONALES</h3>
                 </div>
                 <div class="col text-right">
-                  <button type="button" data-id="{{ Auth::user()->id }}" class="open-EditProfileDialog btn btn-link" data-toggle="modal" data-target="#editModal" ><i class="fa fa-edit"></i>  Editar</button>
-                  
+                  <a href="#!" class="btn btn-sm btn-primary">Editar</a>
                 </div>
               </div>
             </div>
@@ -525,32 +524,6 @@
       </footer>
     </div>
   </div>
-
-  <!-- Edit Modal -->
-<div id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-  <div role="document" class="modal-dialog">
-    <div class="modal-content">
-        {{ Form::open(['route' => ['profile.update', 1], 'method' => 'PUT'] ) }}
-      <div class="modal-header">
-        <h5 id="exampleModalLabel" class="modal-title">Editar Perfil</h5>
-        <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-      </div>
-      <div class="modal-body">
-        <p class="italic"><small>Los campos con * son oligatorios</small></p>
-          <div class="form-group">
-            <label><strong>Nombres *</strong></label>
-            {{Form::text('name',null, array('required' => 'required', 'class' => 'form-control'))}}
-        </div>
-            <input type="hidden" name="profile_id">
-     
-        <div class="form-group">       
-            <input type="submit" value="Editar Perfil" class="btn btn-primary">
-          </div>
-        </div>
-      {{ Form::close() }}
-    </div>
-  </div>
-</div>
   <!-- Argon Scripts -->
   <!-- Core -->
   <script src="{{ asset('vendor/jquery/dist/jquery.min.js') }}"></script>
@@ -594,25 +567,6 @@
       $('#requestProject').modal('show');
       
      }
-
-     $(document).ready(function() {
-    $('.open-EditProfileDialog').on('click', function(){
-      var url ="profile/"  
-      var id = $(this).data('id').toString();
-      url = url.concat(id).concat("/edit");
-      //alert(url);
-
-      $.get(url, function(data){
-        $("#editModal input[name='name']").val(data['name']);
-        $("#editModal input[name='profile_id']").val(data['id']);
-    
-      });
-    });
-});
-
-
-
-
 
      function seeModalUploadImage(e){
 

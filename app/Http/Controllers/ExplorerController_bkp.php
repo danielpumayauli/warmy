@@ -49,27 +49,6 @@ class ExplorerController extends Controller
         return view('other-circles')->with(compact('groups','request_projects','numRequest'));
     }
 
-    public function index2()
-    {
-
-        $projects = DB::select('SELECT p.*, c.name AS circle_name
-                            FROM projects p
-                            LEFT JOIN circle_project cp ON p.id = cp.project_id
-                            LEFT JOIN circles c ON c.id = cp.circle_id
-                            ');
-
-  
-      
-
-        $groups = $this->groupByCategory($projects);
-
-       // dd($groups);
-        
-
-        return view('list-projects')->with(compact('groups'));
-    }
-
-
     /**
      * Show the form for creating a new resource.
      *
