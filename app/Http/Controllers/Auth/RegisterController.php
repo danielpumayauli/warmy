@@ -81,7 +81,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'acceptance' => $data['acceptance'],
-            'image' => 'https://lorempixel.com/800/800/people/?36013',
+            'image' => null,
         ]);
     }
 }

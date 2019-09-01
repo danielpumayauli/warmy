@@ -70,7 +70,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
-              <span class="avatar avatar-sm rounded-circle">
+              <span class="avatar avatar-sm rounded-circle" style="background-color: transparent;">
                 <img alt="Image placeholder" src="{{ asset('img/theme/team-1-800x800.jpg') }}">
               </span>
             </div>
@@ -250,9 +250,9 @@
           <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
-                <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="/storage/image/{{ Auth::user()->image }}">
-
+                <span class="avatar avatar-sm rounded-circle" style="background: transparent">
+                <img alt="Image placeholder" src="{{ (Auth::user()->image == null) ? '/storage/logo/user-default.png' : '/storage/image/'.Auth::user()->image }}">
+               
                   
 
                 </span>
@@ -334,7 +334,7 @@
                   <div class="col-lg-3 order-lg-2">
                     <div class="card-profile-image">
                       <a onclick="seeModalUploadImage(this)" style="cursor:pointer">
-                        <img src="/storage/image/{{ Auth::user()->image }}" class="rounded-circle">
+                        <img src="{{ (Auth::user()->image == null) ? '/storage/logo/user-default.png' : '/storage/image/'.Auth::user()->image }}">
                       </a>
                     </div>
                   </div>
@@ -433,7 +433,7 @@
                 <div class="row">
                   <div class="col-md-3" >
                     <a href="#" class="avatar avatar-sm" style="margin:0 auto" data-toggle="tooltip" data-original-title="{{ $contact->name . ' ' . $contact->lastName }}">
-                      <img alt="{{ $contact->name }}" src=" /storage/image/{{ $contact->image }}" class="rounded-circle" style="width:100%">
+                      <img alt="{{ $contact->name }}" src="{{ ($contact->image == null) ? '/storage/logo/user-default.png' : '/storage/image/'.$contact->image }}" class="rounded-circle" style="width:100%">
                     </a>
                   </div>
                   <div class="col-md-9" >
