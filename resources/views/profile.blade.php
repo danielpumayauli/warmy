@@ -251,7 +251,7 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle" style="background: transparent">
-                <img alt="Image placeholder" src="{{ (Auth::user()->image == null) ? '/storage/logo/user-default.png' : '/storage/image/'.Auth::user()->image }}">
+                <img alt="Image placeholder" src="{{ (Auth::user()->image == null) ? '/storage/image/user-default.png' : '/storage/image/'.Auth::user()->image }}">
                
                   
 
@@ -334,7 +334,7 @@
                   <div class="col-lg-3 order-lg-2">
                     <div class="card-profile-image">
                       <a onclick="seeModalUploadImage(this)" style="cursor:pointer">
-                        <img src="{{ (Auth::user()->image == null) ? '/storage/logo/user-default.png' : '/storage/image/'.Auth::user()->image }}">
+                        <img src="{{ (Auth::user()->image == null) ? '/storage/image/user-default.png' : '/storage/image/'.Auth::user()->image }}">
                       </a>
                     </div>
                   </div>
@@ -433,7 +433,7 @@
                 <div class="row">
                   <div class="col-md-3" >
                     <a href="#" class="avatar avatar-sm" style="margin:0 auto" data-toggle="tooltip" data-original-title="{{ $contact->name . ' ' . $contact->lastName }}">
-                      <img alt="{{ $contact->name }}" src="{{ ($contact->image == null) ? '/storage/logo/user-default.png' : '/storage/image/'.$contact->image }}" class="rounded-circle" style="width:100%">
+                      <img alt="{{ $contact->name }}" src="{{ ($contact->image == null) ? '/storage/image/user-default.png' : '/storage/image/'.$contact->image }}" class="rounded-circle" style="width:100%">
                     </a>
                   </div>
                   <div class="col-md-9" >
