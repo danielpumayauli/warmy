@@ -29,7 +29,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <!-- Brand -->
-      <a class="navbar-brand pt-0" href="/" style="">
+      <a class="navbar-brand pt-0" href="/profile" style="">
         WARMY ARMY
       </a>
       <!-- User -->
@@ -333,9 +333,9 @@
                 <div class="row justify-content-center">
                   <div class="col-lg-3 order-lg-2">
                     <div class="card-profile-image">
-                      <a onclick="seeModalUploadImage(this)" style="cursor:pointer">
+                      <!-- <a onclick="seeModalUploadImage(this)" style="cursor:pointer"> -->
                         <img src="{{ (Auth::user()->image == null) ? '/storage/image/user-default.png' : '/storage/image/'.Auth::user()->image }}">
-                      </a>
+                      <!-- </a> -->
                     </div>
                   </div>
                 </div>
@@ -485,36 +485,6 @@
         </div>
       </div>
 
-      <!-- Modal -->
-      <div class="modal fade" id="editImage" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <form id="form-photo" enctype="multipart/form-data">
-            {{csrf_field()}}
-              <div class="modal-header">
-                <h5 class="modal-title" id="requestProject_title">Actualizar imagen</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <img id="img-preview">
-                
-                <input id="user_photo" type="hidden" name="user_photo" value="{{ Auth::user()->id }}">
-                <input id="photo" type="file" class="form-control" name="photo" >
-                
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" >Cerrar</button>
-                  
-                <button class="btn btn-primary">Actualizar Imagen</button>
-                              
-              </div>
-
-            </form>
-          </div>
-        </div>
-      </div>
 
       <!-- Footer -->
       <footer class="footer">
@@ -624,15 +594,6 @@
       });
     });
 });
-
-
-
-
-
-     function seeModalUploadImage(e){
-
-      $('#editImage').modal('show');
-     }
 
      $('#form-photo').on('submit', function(e) {
         e.preventDefault();
