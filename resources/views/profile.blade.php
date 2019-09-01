@@ -71,7 +71,7 @@
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle" style="background-color: transparent;">
-                <img alt="Image placeholder" src="{{ asset('img/theme/team-1-800x800.jpg') }}">
+                <img alt="Image placeholder" src="{{ (Auth::user()->image == null) ? '/storage/image/user-default.png' : '/storage/image/'.Auth::user()->image }}">
               </span>
             </div>
           </a>
