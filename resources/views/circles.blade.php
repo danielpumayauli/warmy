@@ -374,7 +374,8 @@
                         @foreach($usersProjects as $userProject)
                           @if ($userProject->project_id == $project->project_id)
                           <a href="#" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="{{ $userProject->name . ' ' . $userProject->lastName }}">
-                            <img alt="Image placeholder" src="/storage/image/{{ $userProject->image }}" class="rounded-circle">
+                            
+                            <img alt="Image placeholder" src="{{ $userProject->image == null ? '/storage/image/user-default.png' : '/storage/image/'.$userProject->image }}" class="rounded-circle">
                           </a>
                           @endif
                         
