@@ -203,7 +203,7 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="{{ Auth::user()->image }}">
+                  <img alt="Image placeholder" src="/storage/image/{{ Auth::user()->image }}">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name }}</span>
@@ -283,7 +283,7 @@
         <div class="col-md-12">
                       <div class="form-group">
                         <label class="form-control-label" for="input-circle" title="Obligatorio">C&iacute;rculo de Integraci&oacute;n <span style="color:red">*</span></label>
-                        {{Form::select('circle_id', $warmy_categories, null, ['required' => 'required', 'class' => 'form-control','placeholder' => 'Seleccione Circulo de integración'])}}
+                        {{Form::select('circle_id', $warmy_categories, null, ['required' => 'required', 'class' => 'form-control','placeholder' => 'Seleccione'])}}
 
                       </div>
                     </div>             

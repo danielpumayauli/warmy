@@ -240,7 +240,7 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="{{ Auth::user()->image }}">
+                  <img alt="Image placeholder" src=" /storage/image/{{ Auth::user()->image }}">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name }}</span>
@@ -314,7 +314,7 @@
                   <div class="">
                     <div class="media align-items-center pl-4" style="">
                       <a href="/project/{{$publicPost->shortName}}" class="avatar rounded-circle mr-3" data-toggle="tooltip" data-original-title="Proyecto: {{$publicPost->name}}">
-                        <img alt="{{$publicPost->name}}" src="{{$publicPost->image}}">
+                        <img alt="{{$publicPost->name}}" src=" /storage/logo/{{$publicPost->image}}">
                       </a>
                       <div class="media-body">
                         <span class="mb-0 text-sm">{{$publicPost->description}}</span> <br>

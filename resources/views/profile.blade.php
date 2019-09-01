@@ -251,7 +251,10 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="{{ Auth::user()->image }}">
+                <img alt="Image placeholder" src="/storage/image/{{ Auth::user()->image }}">
+
+                  
+
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name }}</span>
@@ -331,7 +334,7 @@
                   <div class="col-lg-3 order-lg-2">
                     <div class="card-profile-image">
                       <a onclick="seeModalUploadImage(this)" style="cursor:pointer">
-                        <img src="{{ Auth::user()->image }}" class="rounded-circle">
+                        <img src="/storage/image/{{ Auth::user()->image }}" class="rounded-circle">
                       </a>
                     </div>
                   </div>
@@ -430,7 +433,7 @@
                 <div class="row">
                   <div class="col-md-3" >
                     <a href="#" class="avatar avatar-sm" style="margin:0 auto" data-toggle="tooltip" data-original-title="{{ $contact->name . ' ' . $contact->lastName }}">
-                      <img alt="{{ $contact->name }}" src="{{ $contact->image }}" class="rounded-circle" style="width:100%">
+                      <img alt="{{ $contact->name }}" src=" /storage/image/{{ $contact->image }}" class="rounded-circle" style="width:100%">
                     </a>
                   </div>
                   <div class="col-md-9" >
@@ -530,7 +533,8 @@
 <div id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
   <div role="document" class="modal-dialog">
     <div class="modal-content">
-        {{ Form::open(['route' => ['profile.update', 1], 'method' => 'PUT'] ) }}
+        {{ Form::open(['route' => ['profile.update', 1], 'method' => 'PUT','files' => true] ) }}
+
       <div class="modal-header">
         <h5 id="exampleModalLabel" class="modal-title">Editar Perfil</h5>
         <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
@@ -539,9 +543,20 @@
         <p class="italic"><small>Los campos con * son oligatorios</small></p>
           <div class="form-group">
             <label><strong>Nombres *</strong></label>
-            {{Form::text('name',null, array('required' => 'required', 'class' => 'form-control'))}}
+            {{Form::text('name',null, array('required' => 'required','files' => true,'class' => 'form-control'))}}
         </div>
             <input type="hidden" name="profile_id">
+
+            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label title="Opcional"><strong>Foto</strong> </label>
+                                    <input type="file" name="image" class="form-control">
+                                    @if($errors->has('image'))
+                                        <span>
+                                           <strong>{{ $errors->first('image') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
      
         <div class="form-group">       
             <input type="submit" value="Editar Perfil" class="btn btn-primary">

@@ -69,7 +69,7 @@
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="{{ asset('img/theme/team-1-800x800.jpg') }}">
+                <img alt="Image placeholder" src="/storage/image/{{ Auth::user()->image }}">
               </span>
             </div>
           </a>
@@ -226,7 +226,7 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="{{ Auth::user()->image }}">
+                  <img alt="Image placeholder" src="/storage/image/{{ Auth::user()->image }}">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name }}</span>
@@ -345,8 +345,19 @@
                                 data-author-lastName="{{ $project->author_lastName }}"
                                 data-participants="{{ $project->project_participants }}" 
                                 onclick="getInfoProject(this)">{{ $project->project_name }}</span><br>
+                                @if($project->circle_name  === 'Laboral')
                                 <span class="badge badge-info">{{ $project->circle_name }}</span>
-                          
+                                @elseif ($project->circle_name  === 'Social')
+                                <span class="badge badge-warning">{{ $project->circle_name }}</span>
+                                @elseif ($project->circle_name  === 'Comercial')  
+         
+<span class="badge badge-danger">{{ $project->circle_name }}</span>
+
+ @elseif ($project->circle_name  === 'StartUp')  
+         
+<span class="badge badge-success">{{ $project->circle_name }}</span>
+
+                                @endif
                         </div>
                       </div>
                     </th>
@@ -363,7 +374,7 @@
                         @foreach($usersProjects as $userProject)
                           @if ($userProject->project_id == $project->project_id)
                           <a href="#" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="{{ $userProject->name . ' ' . $userProject->lastName }}">
-                            <img alt="Image placeholder" src="{{ $userProject->image }}" class="rounded-circle">
+                            <img alt="Image placeholder" src="/storage/image/{{ $userProject->image }}" class="rounded-circle">
                           </a>
                           @endif
                         

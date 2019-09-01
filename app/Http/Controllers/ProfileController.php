@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
-
+use App\Helpers\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DB; 
@@ -119,21 +119,57 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+
+
+
     public function update(Request $request)
     {
-        $this->validate($request,[
+       $this->validate($request,[
             'name' => [
                 'max:255',
                 Rule::unique('users')->ignore($request->profile_id)->where(function ($query) {
                     return $query->where('is_active', 1);
                 }),
             ],
+ 
         ]);
 
-        $input = $request->all();
+ 
+        $image= null;
+
+        if(!empty(request()->file())){
+            $image = Helper::uploadFile('image', 'public/image');
+
+          
+        }
+        
+      $request->merge(['image' => $image]);
+
+     // $profile=$request->merge(['image' => $image]);
+      //$request->name = $request->name;
+
+     /* $array = [
+        'profile_id' => $request->profile_id,
+        'name' => $request->name,
+      'image' =>  $request->image,
+    ];*/
+      
+      //$users = $request->users;
+    
+       // $profile->name = $data['name'];
+        
+        $data['image']=$request->request->get('image');
+        $data['name']=$request->request->get('name');
+
+     // $input = $request->all();
+
+     //dd($data);
        $lims_category_data = User::findOrFail($request->profile_id);
-        $lims_category_data->update($input);
-        return redirect('profile')->with('message', 'Data updated successfully');
+ 
+      $lims_category_data->update($data);
+      return redirect('profile')->with('message', 'Data updated successfully');
     } 
 
     /**

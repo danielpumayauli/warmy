@@ -386,7 +386,7 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="{{ Auth::user()->image }}">
+                  <img alt="Image placeholder" src="/storage/image/{{ Auth::user()->image }}">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name }}</span>
@@ -468,11 +468,11 @@
                                 </div>
                               </div>
                               <div id="inbox_chat" class="inbox_chat">
-                                
+                            
                                 @forelse($contacts as $contact)
                                 <div class="chat_list" onclick="refreshChat({{$contact->id}},'{{ $contact->name}} {{ $contact->lastName }}')" style="cursor: pointer;">
                                   <div class="chat_people" >
-                                    <div class="chat_img"> <img src="{{ $contact->image }}" alt="{{ $contact->name}}" title="{{ $contact->name}}"> </div>
+                                    <div class="chat_img"> <img src="/storage/image/{{ $contact->image }}" alt="{{ $contact->name}}" title="{{ $contact->name}}"> </div>
                                     <div class="chat_ib">
                                       <h5> {{ $contact->name}} {{ $contact->lastName }} <span class="chat_date">...</span></h5>
                                       
