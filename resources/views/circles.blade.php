@@ -28,7 +28,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <!-- Brand -->
-      <a class="navbar-brand pt-0" href="/profile" style="">
+      <a class="navbar-brand pt-0" href="/" style="">
         WARMY ARMY
       </a>
       <!-- User -->

@@ -33,7 +33,7 @@
     .stars {
         margin:20px auto 1px;    
     }
-    .list-group-item-text{
+    .list-group-item-text {
       font-size:10px;
     }
   </style>
@@ -45,7 +45,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <!-- Brand -->
-      <a class="navbar-brand pt-0" href="/profile" style="">
+      <a class="navbar-brand pt-0" href="/" style="">
         WARMY ARMY
       </a>
       <!-- User -->
