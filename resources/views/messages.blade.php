@@ -472,10 +472,9 @@
                                 @forelse($contacts as $contact)
                                 <div class="chat_list" onclick="refreshChat({{$contact->id}},'{{ $contact->name}} {{ $contact->lastName }}')" style="cursor: pointer;">
                                   <div class="chat_people" >
-                                    <div class="chat_img"> <img src="/storage/image/{{ $contact->image }}" alt="{{ $contact->name}}" title="{{ $contact->name}}"> </div>
+                                    <div class="chat_img"> <img src="{{ ($contact->image == null) ? '/storage/image/user-default.png' : '/storage/image/'.$contact->image }}" alt="{{ $contact->name}}" title="{{ $contact->name}}"> </div>
                                     <div class="chat_ib">
-                                      <h5> {{ $contact->name}} {{ $contact->lastName }} <span class="chat_date">...</span></h5>
-                                      
+                                      <h5> {{ $contact->name}} {{ $contact->lastName }} <span class="chat_date">...</span></h5>                                      
                                     </div>
                                   </div>
                                 </div>
