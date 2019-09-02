@@ -12,15 +12,16 @@
 */
 
 Route::get('/', function () {
-//  return view('welcome');
-return redirect('/profile');
+ return view('login');
  // return view('login');
 });
 
+/*
 Route::get('nuevo', function () {
     //return view('welcome');
    return view('login');
    });
+*/
 
 Route::get('/list-projects', 'ExplorerController@index2')->name('list-projects');
 

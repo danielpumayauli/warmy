@@ -33,8 +33,7 @@
   <!-- CSS Files -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
- 
-<link href="css/now-ui-kit.css?v=1.3.0" rel="stylesheet" />
+  <link href="css/now-ui-kit.css?v=1.3.0" rel="stylesheet" />
 
 </head>
 
@@ -54,7 +53,7 @@
       <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="../assets/img/blurred-image-1.jpg">
         <ul class="navbar-nav">
           <li class="nav-item">
-           
+            <a class="nav-link" href="../index.html">Regresar</a>
           </li>
        
           <li class="nav-item">
@@ -127,7 +126,7 @@
 
               </div>
 
-         
+
             
 
               <div class="card-footer text-center">
@@ -138,7 +137,7 @@
                 
                 <div class="pull-left">
                   <h6>
-                    <a href="#myModal" data-toggle="modal" data-target="#modalRegister" class="link">Crear Cuenta</a>
+                    <a href="#pablo" class="link">Crear Cuenta</a>
                   </h6>
                 </div>
                 <div class="pull-right">
@@ -147,39 +146,11 @@
                   </h6>
                 </div>
             </form>
-
-          
             </div>
           </div>
         </div>
       </div>
     </div>
-
-
- <!-- Modal -->
-<div class="modal fade" id="modalRegister" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalRegisterlLabel">Creación de cuenta</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       txtxtxtx
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Registrar</button>
-      </div>
-    </div>
-  </div>
-</div>
-	<!--  End Modal -->
-  
-
-
     <footer class="footer">
       <div class=" container ">
      
@@ -196,12 +167,8 @@
   </div>
 
 
+  
 
 </body>
-
-<!--   Core JS Files   -->
-<script src="/js/core/jquery.min.js" type="text/javascript"></script>
-<script src="/js/core/popper.min.js" type="text/javascript"></script>
-<script src="/js/core/bootstrap.min.js" type="text/javascript"></script>
 
 </html>
