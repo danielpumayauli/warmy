@@ -45,7 +45,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <!-- Brand -->
-      <a class="navbar-brand pt-0" href="/" style="">
+      <a class="navbar-brand pt-0" href="/profile" style="">
         WARMY ARMY
       </a>
       <!-- User -->
@@ -333,32 +333,34 @@
                         <div class="row project__disponible">                          
                           <div class="col-sm-6 col-md-3">
                             <h4 class="text-center data-info-person">Comercial</h4>
+                                                        
                             @forelse($groups[0] as $comercial)
                             <div class="list-group">
                               <div class="list-group-item" style="border-color: rgba(251, 175, 190, .5) ">
                                 <div class="row">
-                                  <div class="col-md-12 col-lg-8">
-                                      <h4 class="list-group-item-heading"> {{ $comercial->name }} </h4>
+                                  <div class="col-md-12">
+
+                                    <div class="row" style="padding-bottom:5px;">
+                                      <div class="col-md-12">
+                                      <h4 class="list-group-item-heading" style="display: inline-block; float:left; padding-right: 10px;">{{ $comercial->name }}</h4>
+                                      @if($comercial->request_state === 0)
+                                      <button class="btn btn-primary" style="font-size:8px; padding: 3px;" disabled>Solicitud <br> Enviada</button>
+                                      @else
+                                      <form method="post" action="{{url('/project/registerUser')}}">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" name="project_id" value="{{$comercial->id}}">
+                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                        <button class="btn btn-primary" style="font-size:8px; padding: 3px;">Agregarme</button>
+                                      </form>
+                                      @endif
+                                      </div>
+                                    </div>
                                       <p class="list-group-item-text">
                                       {{ $comercial->description }}             
                                       </p>
                                       <small style="font-size:10px">{{ $comercial->participants }} {{ (($comercial->participants > 1) ? 'participantes':'participante' ) }}</small>
                                   </div>                                
-                                  <div class="col-sm-12 col-md-4 text-center" >
-                                    @if($comercial->request_state === 0)
-                                    <button class="btn btn-primary" style="font-size:8px; padding: 3px;" disabled>Solicitud <br> Enviada</button>
-                                    
-                                    @else
-                                    <form method="post" action="{{url('/project/registerUser')}}">
-                                      {{ csrf_field() }}
-                                      <input type="hidden" name="project_id" value="{{$comercial->id}}">
-                                      <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                                      <button class="btn btn-primary" style="font-size:8px; padding: 3px;">Agregarme</button>
-                                    </form>
-                                    @endif
-                                      
-                                      
-                                  </div>                                
+                                                                
                                 </div>
                               </div>
                             </div>
@@ -368,6 +370,7 @@
                               <a href="circle/create" class="btn btn-primary" style="font-size:8px; padding: 3px;">Crear uno nuevo</a>
                             </div>
                             @endforelse
+
                           </div>
                           <div class="col-sm-6 col-md-3">
                             <h4 class="text-center data-info-person">Laboral</h4>

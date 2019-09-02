@@ -138,12 +138,12 @@
                 
                 <div class="pull-left">
                   <h6>
-                    <a href="#myModal" data-toggle="modal" data-target="#modalRegister" class="link">Crear Cuenta</a>
+                    <a href="/register" class="link">Crear Cuenta</a>
                   </h6>
                 </div>
                 <div class="pull-right">
                   <h6>
-                    <a href="#pablo" class="link">¿Olvidó contraseña?</a>
+                    <a href="/password/reset" class="link">¿Olvidó contraseña?</a>
                   </h6>
                 </div>
             </form>
