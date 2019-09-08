@@ -348,8 +348,9 @@
                                 @if($project->circle_name  === 'Laboral')
                                 <span class="badge badge-info">{{ $project->circle_name }}</span>
                                 @elseif ($project->circle_name  === 'Social')
-                                <span class="badge badge-warning">{{ $project->circle_name }}</span>
+                                <span class="badge badge-warning" style="background-color: yellow">{{ $project->circle_name }}</span>
                                 @elseif ($project->circle_name  === 'Comercial')  
+
          
 <span class="badge badge-danger">{{ $project->circle_name }}</span>
 

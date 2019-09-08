@@ -31,10 +31,12 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <!-- CSS Files -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
- 
-<link href="css/now-ui-kit.css?v=1.3.0" rel="stylesheet" />
+
+<!-- CSS Files -->
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/css/now-ui-kit.css?v=1.3.0" rel="stylesheet" />
+
 
 </head>
 
@@ -63,12 +65,7 @@
               <p class="d-lg-none d-xl-none">Twitter</p>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank">
-              <i class="fab fa-facebook-square"></i>
-              <p class="d-lg-none d-xl-none">Facebook</p>
-            </a>
-          </li>
+         
           <li class="nav-item">
             <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank">
               <i class="fab fa-instagram"></i>
@@ -138,12 +135,12 @@
                 
                 <div class="pull-left">
                   <h6>
-                    <a href="/register" class="link">Crear Cuenta</a>
+                    <a href="#myModal" data-toggle="modal" data-target="#modalRegister" class="link">Crear Cuenta</a>
                   </h6>
                 </div>
                 <div class="pull-right">
                   <h6>
-                    <a href="/password/reset" class="link">¿Olvidó contraseña?</a>
+                    <a href="#pablo" class="link">¿Olvidó contraseña?</a>
                   </h6>
                 </div>
             </form>
@@ -161,19 +158,36 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalRegisterlLabel">Creación de cuenta</h5>
+        <h5 class="modal-title" id="modalRegisterlLabel" style="color:#343a40;">Bienvenido a Warmi Army</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-       txtxtxtx
-      </div>
+
+      <form>
+  <div class="form-group">
+    <label for="exampleInputEmail1" style="color:#343a40;">Email</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingresar un correo">
+   
+  <div class="form-group">
+    <label for="exampleInputPassword1" style="color:#343a40;">Contraseña</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Crear una contraseña">
+    <small id="emailHelp" class="form-text text-muted">Tu contrseña debe tener almenos 6 caracteres.</small>
+  </div>
+  </div>
+
+
+
+    </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Registrar</button>
-      </div>
-    </div>
+        <button type="button" class="btn btn-primary">Regístrate</button>
+
+              </div>
+   
+              </form>
+            </div>
   </div>
 </div>
 	<!--  End Modal -->
