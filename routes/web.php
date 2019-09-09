@@ -64,4 +64,5 @@ Route::middleware(['auth'])->group(function (){
     Route::post('/project/registerUser', 'ProjectController@registerUser'); // Registrar solicitud de usuario del formulario
     Route::post('/project/approveUser', 'ProjectController@approveUser'); // Aprobar solicitud de usuario del formulario
 
+    Route::get('/other-circles/findCircle', 'ExplorerController@findCircle');
 });

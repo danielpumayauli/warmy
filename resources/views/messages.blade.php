@@ -190,7 +190,7 @@
                 data-project_name="{{ $request->project_name }}"
                 data-user_id="{{ $request->user_id }}"
                 data-user_name="{{ $request->user_name }} {{ $request->user_lastName }}"
-                data-user_image="{{ ($request->user_image == null) ? '/storage/image/user-default.png' : $request->user_image}}"
+                data-user_image="{{ $request->user_image }}"
                 data-user_career="{{ $request->user_career }}"
                 data-user_email="{{ $request->user_email }}" 
                 data-user_looking="{{ $request->user_looking }}" 
@@ -210,8 +210,8 @@
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
-              <span class="avatar avatar-sm rounded-circle" style="background-color: transparent;">
-                <img alt="Image placeholder" src="{{ (Auth::user()->image == null) ? '/storage/image/user-default.png' : '/storage/image/'.Auth::user()->image }}">
+              <span class="avatar avatar-sm rounded-circle">
+                <img alt="Image placeholder" src="{{ asset('img/theme/team-1-800x800.jpg') }}">
               </span>
             </div>
           </a>
@@ -360,7 +360,7 @@
                 data-project_name="{{ $request->project_name }}"
                 data-user_id="{{ $request->user_id }}"
                 data-user_name="{{ $request->user_name }} {{ $request->user_lastName }}"
-                data-user_image="{{ ($request->user_image == null) ? '/storage/image/user-default.png' : $request->user_image}}"
+                data-user_image="{{ $request->user_image }}"
                 data-user_career="{{ $request->user_career }}"
                 data-user_email="{{ $request->user_email }}" 
                 data-user_looking="{{ $request->user_looking }}" 
@@ -385,8 +385,8 @@
           <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
-                <span class="avatar avatar-sm rounded-circle" style="background-color: transparent;">
-                  <img alt="Image placeholder" src="{{ (Auth::user()->image == null) ? '/storage/image/user-default.png' : '/storage/image/'.Auth::user()->image }}">
+                <span class="avatar avatar-sm rounded-circle">
+                  <img alt="Image placeholder" src="{{ Auth::user()->image }}">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name }}</span>
@@ -468,13 +468,14 @@
                                 </div>
                               </div>
                               <div id="inbox_chat" class="inbox_chat">
-                            
+                                
                                 @forelse($contacts as $contact)
                                 <div class="chat_list" onclick="refreshChat({{$contact->id}},'{{ $contact->name}} {{ $contact->lastName }}')" style="cursor: pointer;">
                                   <div class="chat_people" >
-                                    <div class="chat_img"> <img src="{{ ($contact->image == null) ? '/storage/image/user-default.png' : '/storage/image/'.$contact->image }}" alt="{{ $contact->name}}" title="{{ $contact->name}}"> </div>
+                                    <div class="chat_img"> <img src="{{ $contact->image }}" alt="{{ $contact->name}}" title="{{ $contact->name}}"> </div>
                                     <div class="chat_ib">
-                                      <h5> {{ $contact->name}} {{ $contact->lastName }} <span class="chat_date">...</span></h5>                                      
+                                      <h5> {{ $contact->name}} {{ $contact->lastName }} <span class="chat_date">...</span></h5>
+                                      
                                     </div>
                                   </div>
                                 </div>

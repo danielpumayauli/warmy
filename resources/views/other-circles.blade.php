@@ -36,6 +36,9 @@
     .list-group-item-text {
       font-size:10px;
     }
+    #searchCircle::placeholder{
+      color: lightgrey;
+    }
   </style>
   <!-- Sidenav -->
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main" >
@@ -146,17 +149,7 @@
             </div>
           </div>
         </div>
-        <!-- Form -->
-        <!-- <form class="mt-4 mb-3 d-md-none">
-          <div class="input-group input-group-rounded input-group-merge">
-            <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <span class="fa fa-search"></span>
-              </div>
-            </div>
-          </div>
-        </form> -->
+        
         <!-- Navigation -->
         <ul class="navbar-nav">
           <li class="nav-item">
@@ -203,17 +196,7 @@
       <div class="container-fluid">
         <!-- Brand -->
         <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="../index.html">OTROS CIRCULOS</a>
-        <!-- Form -->
-        <!-- <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-          <div class="form-group mb-0">
-            <div class="input-group input-group-alternative">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-search"></i></span>
-              </div>
-              <input class="form-control" placeholder="Search" type="text">
-            </div>
-          </div>
-        </form> -->
+
         <!-- User -->
         <ul class="navbar-nav align-items-center d-none d-md-flex">
         <li class="nav-item dropdown">
@@ -320,20 +303,31 @@
                   <div class="row align-items-center">
                     <div class="col">
                       <h3 class="mb-0 data-info-person">EXPLORAR CÍRCULOS</h3>
+                      
+                    </div>
+                    <!-- Form -->
+                    <div class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                      <div class="form-group mb-0">
+                        <div class="input-group input-group-alternative" style="border-color: #7C5CC4">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-search" style="color: #7C5CC4"></i></span>
+                          </div>
+                            <input id="userId" type="hidden" value="{{ Auth::user()->id }}">
+                            <input id ="searchCircle" name="searchCircle" class="form-control" placeholder="Buscar círculos" type="text" style="color: #32325d;" onkeypress="return findEvent(event)">
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div class="table-responsive">
                   <div style="width: 100%; background: ">
-                  <span style="font-size: 12px; padding-left: 0.6rem;">Aqui se muestran círculos disponibles por categoría. Elija uno según sus intereses</span>
-                    <div id="all-projects" style="background:;">
-
+                  <!-- <span style="font-size: 12px; padding-left: 0.6rem;">Aqui se muestran círculos disponibles por categoría. Elija uno según sus intereses</span> -->
+                    
                       <!-- LISTA -->
-                      <div class="container">
+                      <div id="all-projects" class="container">                      
                         <div class="row project__disponible">                          
                           <div class="col-sm-6 col-md-3">
-                            <h4 class="text-center data-info-person">Comercial</h4>
-                                                        
+                            <h4 class="text-center data-info-person">Comercial</h4>                                                        
                             @forelse($groups[0] as $comercial)
                             <div class="list-group">
                               <div class="list-group-item" style="border-color: rgba(251, 175, 190, .5) ">
@@ -370,7 +364,6 @@
                               <a href="circle/create" class="btn btn-primary" style="font-size:8px; padding: 3px;">Crear uno nuevo</a>
                             </div>
                             @endforelse
-
                           </div>
                           <div class="col-sm-6 col-md-3">
                             <h4 class="text-center data-info-person">Laboral</h4>
@@ -480,11 +473,10 @@
                               <a href="circle/create" class="btn btn-primary" style="font-size:8px; padding: 3px;">Crear uno nuevo</a>
                             </div>
                             @endforelse
-                          </div>         
+                          </div>      
                         </div>
                       </div>
                       <!-- FIN LISTA -->
-                    </div>
 
                   </div>
                   <!-- Add personal details from this user here! -->
@@ -581,6 +573,38 @@
       $('#requestProject').modal('show');
       
      }
+    /* Se ejecuta busqueda de Círculo */
+    function findEvent(event){
+      if(event.which == 13 || event.keyCode == 13){
+        let busqueda = document.getElementById('searchCircle').value;
+        let userId = document.getElementById('userId').value;
+
+        console.log('en js: ',busqueda);
+
+          $.ajax({
+              type:'GET',
+              url: '/other-circles/findCircle',
+              data:{
+                  busqueda    :   busqueda,
+                  userId      :   userId
+              },
+              success: function(respuesta) {
+                data = JSON.parse(respuesta);
+
+                console.log(data);
+                if(data.error == 0){
+                  document.getElementById('all-projects').innerHTML = data.html;
+                }else{
+                  console.log('ocurrio un error, vuelva a intentarlo');
+                }
+              },
+              error: function() {
+                  console.log("No se ha podido obtener la información");
+                  }
+          });		
+        
+      }
+    }
   </script>
 </body>
 
