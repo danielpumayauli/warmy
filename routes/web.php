@@ -25,7 +25,7 @@ Route::get('nuevo', function () {
 
 Route::get('/list-projects', 'ExplorerController@index2')->name('list-projects');
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/form', 'FormController@index')->name('form');
 
 Route::post('/form', 'FormController@store');
@@ -39,6 +39,7 @@ Route::get('/project/{circleId}', 'ProjectController@show');
 
 Route::middleware(['auth'])->group(function (){
     Route::get('/profile', 'ProfileController@index')->name('profile');
+    Route::get('/home', 'ProfileController@index')->name('home');
 
     Route::post('/profile/test', 'ProfileController@test');
 

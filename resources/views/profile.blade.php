@@ -7,7 +7,7 @@
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="WA">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Perfil - WARMY ARMY</title>
+  <title>Perfil - WARMI ARMY</title>
   <!-- Favicon -->
   <link href="{{ asset('img/brand/favicon.png')}}" rel="icon" type="image/png">
   <!-- Fonts -->
@@ -30,7 +30,7 @@
       </button>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="/profile" style="">
-        WARMY ARMY
+        WARMI ARMY
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
@@ -491,7 +491,7 @@
         <div class="row align-items-center justify-content-xl-between">
           <div class="col-xl-6">
             <div class="copyright text-center text-xl-left text-muted">
-              &copy; 2019 <a href="#" class="font-weight-bold ml-1" target="_blank">Warmy Army</a>
+              &copy; 2019 <a href="#" class="font-weight-bold ml-1" target="_blank">Warmi Army</a>
             </div>
           </div>
         </div>

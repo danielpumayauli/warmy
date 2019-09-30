@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
-  <title>Noticias - WARMY ARMY</title>
+  <title>Noticias - WARMI ARMY</title>
   <!-- Favicon -->
   <link href="{{ asset('img/brand/favicon.png')}}" rel="icon" type="image/png">
   <!-- Fonts -->
@@ -28,7 +28,7 @@
       </button>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="/profile" style="">
-        WARMY ARMY
+        WARMI ARMY
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
@@ -118,7 +118,7 @@
         <div class="navbar-collapse-header d-md-none">
           <div class="row">
             <div class="col-6 collapse-brand">
-            WARMY
+            WARMI
             </div>
             <div class="col-6 collapse-close">
               <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
@@ -303,7 +303,7 @@
                 <div class="card-header border-0">
                   <div class="row align-items-center">
                     <div class="col">
-                      <h3 class="mb-0 data-info-person">Mensajes públicos compartidos por proyectos en Warmy Army</h3>
+                      <h3 class="mb-0 data-info-person">Mensajes públicos compartidos por proyectos en Warmi Army</h3>
                       <span style="font-size: 10px">Últimas novedades</span>
                     </div>
                   </div>
@@ -386,7 +386,7 @@
             <div class="row align-items-center justify-content-xl-between">
               <div class="col-xl-6">
                 <div class="copyright text-center text-xl-left text-muted">
-                  &copy; 2019 <a href="#" class="font-weight-bold ml-1" target="_blank">Warmy Army</a>
+                  &copy; 2019 <a href="#" class="font-weight-bold ml-1" target="_blank">Warmi Army</a>
                 </div>
               </div>
             </div>
