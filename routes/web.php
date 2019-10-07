@@ -28,6 +28,14 @@ Route::get('/list-projects', 'ExplorerController@index2')->name('list-projects')
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/form', 'FormController@index')->name('form');
 
+
+/* SEGUNDA VERSIÓN DE FORMULARIO */
+Route::get('/form2', 'Form2Controller@index')->name('form2');
+Route::post('/form2', 'Form2Controller@store');
+Route::post('/form2/registerMember', 'Form2Controller@registerMember');
+
+
+
 Route::post('/form', 'FormController@store');
 Route::post('/form/registerMember', 'FormController@storeMember');
 Auth::routes();
