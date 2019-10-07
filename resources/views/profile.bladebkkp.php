@@ -43,11 +43,18 @@
     vertical-align: baseline;
     border-radius: .25em;
 }
+
+.bootstrap-tagsinput {
+  width: 100% !important;
+}
+
+
   </style>
 
 </head>
 
 <body>
+
   <!-- Sidenav -->
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main" >
     <div class="container-fluid">
@@ -195,27 +202,11 @@
         </ul>
         <!-- Divider -->
         <hr class="my-3">
-        <!-- Heading -->
-        <!-- Navigation -->
-        <!-- <ul class="navbar-nav mb-md-3">
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
-              <i class="ni ni-spaceship"></i> Getting started
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html">
-              <i class="ni ni-palette"></i> Foundation
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html">
-              <i class="ni ni-ui-04"></i> Components
-            </a>
-          </li>
-        </ul> -->
+
       </div>
     </div>
+
+
   </nav>
   <!-- Main content -->
   <div class="main-content">
@@ -225,18 +216,7 @@
         <!-- Brand -->
         <h4 class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block">MI PERFIL</h4>
         
-        <!-- Form -->
-        <!-- <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-          <div class="form-group mb-0">
-            <div class="input-group input-group-alternative">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-search"></i></span>
-              </div>
-              <input class="form-control" placeholder="Search" type="text">
-            </div>
-          </div>
-        </form> -->
-        <!-- User -->
+     
         <ul class="navbar-nav align-items-center d-none d-md-flex">
           <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ni ni-bell-55"></i>
@@ -351,34 +331,50 @@
 
 
                 <div class="col text-right">
-                  <button type="button" data-id="{{ Auth::user()->id }}" class="open-EditProfileDialog btn btn-link" data-toggle="modal" data-target="#editModal" ><i class="fa fa-edit"></i>  Editar</button>
+                  <button type="button" data-id="{{ Auth::user()->id }}" class="open-EditProfileDialog btn btn-link" data-toggle="modal" data-target="#editModal" ><i class="fa fa-edit"></i>  Editar Foto</button>
                   
                 </div>
 
-               
+      
 
+   
 
               </div>
             </div>
             <div class="table-responsive">
+
+
+
+
+
+
+
               <!-- Add personal details from this user here! -->
               <div class="card card-profile shadow" style="padding-top: 5rem; overflow-x: hidden;">
                 <div class="row justify-content-center">
                   <div class="col-lg-3 order-lg-2">
-                    <div class="card-profile-image">
-                      <a onclick="seeModalUploadImage(this)" style="cursor:pointer">
-                        <img src="/storage/image/{{ Auth::user()->image }}" class="rounded-circle">
-                      </a>
-                    </div>
+                    
                   </div>
                 </div>
-                <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                  <!-- For external people -->
-                  <!-- <div class="d-flex justify-content-between">
-                    <a href="#" class="btn btn-sm btn-info mr-4">Conectar</a>
-                    <a href="#" class="btn btn-sm btn-default float-right">Enviar Mensaje</a>
-                  </div> -->
+
+
+
+                <div class="card-profile-image">
+                  <a href="#">
+                    <img  class="rounded-circle" src="/storage/image/{{ Auth::user()->image }}">
+                  </a>
+                  
                 </div>
+
+                
+                <div class="card-body pt-0 pt-md-4">
+           <h2>
+          Hola, {{ Auth::user()->name }}<span class="font-weight-light"></span>
+           </h2>
+     
+   </div>
+            
+          
                 <div class="card-body pt-0 pt-md-4">
                   <div class="row">
                     <div class="col">
@@ -389,16 +385,17 @@
                   </div>
                   <div class="text-left">
 
-             
-
-             
-            
+                          
+                  <h2>Información de la cuenta</h2>
+                   Email (privado)
             <div class="form-group">
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-            </div>
+        <input type="text" value="{{ Auth::user()->email }}" class="form-control" disabled />
+      </div>
 
-                    
-                  <div class="form-group" id="groupfirstName">
+      <h2> Información del perfil   </h2>
+
+                             
+             <div class="form-group" id="groupfirstName">
             <label class="" for="firstName">Nombre <small>(mostrado públicamente)</small></label>
             <input class="form-control input-lg edit-profile-input short" type="text" id="firstName" name="firstName" value="{{ Auth::user()->name }}">        </div>
             
@@ -406,27 +403,91 @@
             <label class="" for="lastName">Apellidos <small>(mostrado públicamente)</small></label>
             <input class="form-control input-lg edit-profile-input short" type="text" id="lastName" name="lastName" value="{{ Auth::user()->lastName }}">        </div>
                  
+
+            <div class="form-group" id="grouplastName">
+            <label class="" for="lastName">DNI<small></small></label>
+            <input class="form-control input-lg edit-profile-input short" type="text" id="dni" name="dni" value="{{ Auth::user()->dni }}">        </div>
+            
+
+
             <div class="form-group">
             <label for="aboutMe">Quién soy</label>
             <textarea placeholder="" id="aboutMe" name="aboutMe" class="form-control" rows="3"></textarea>        </div>  
 
-            <div class="form-group" id="grouplastName">
-            <label class="" for="lastName">DNI<small></small></label>
-            <input class="form-control input-lg edit-profile-input short" type="text" id="lastName" name="lastName" value="">        </div>
-            
-                        
+     
+            <div class="custom-control custom-radio mb-3">
+            <input name="custom-radio-2" class="custom-control-input" id="customRadio5" type="radio">
+            <label class="custom-control-label" for="customRadio5">Hombre</label>
+            </div>
+
+            <div class="custom-control custom-radio mb-3">
+            <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
+            <label class="custom-control-label" for="customRadio6">Mujer</label>
+            </div>
+  
             <div class="form-group" id="groupstyle">
             <label class="" for="style">Mis skills(palabras separadas por coma)</label>
-            <input class="form-control input-lg edit-profile-input" type="text" id="style" name="style" data-role="tagsinput">  </div>
-
+            <input class="form-control input-lg edit-profile-input" type="text"  data-role="tagsinput">  </div>
             
 
-  
 
-                    <hr>
-
+      
+            <button type="button" class="btn btn-primary btn-sm float-right">Actualizar</button>
+            
                   
+                  
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Información de interés</h5>
+<br>
+    
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+     
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+      <div class="custom-control custom-control-alternative custom-checkbox mb-3">
+      <input class="custom-control-input" id="1" type="checkbox" checked>
+  <label class="custom-control-label" for="1">Emprendimiento</label>
+</div>
+<div class="custom-control custom-control-alternative custom-checkbox mb-3">
+<input class="custom-control-input" id="2" type="checkbox" checked>
+  <label class="custom-control-label" for="2">Educación</label>
+</div>
+<div class="custom-control custom-control-alternative custom-checkbox mb-3">
+<input class="custom-control-input" id="3" type="checkbox" checked>
+  <label class="custom-control-label" for="3">Salud y Belleza</label>
+</div>
+<div class="custom-control custom-control-alternative custom-checkbox mb-3">
+<input class="custom-control-input" id="4" type="checkbox" checked>
+  <label class="custom-control-label" for="4">Turismo</label>
+</div>
+      </div>
+
+
+      
+
+
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Grabar preferencias</button>
+      </div>
+    </div>
+  </div>
+</div>
                     
 
                     
@@ -559,20 +620,16 @@
         {{ Form::open(['route' => ['profile.update', 1], 'method' => 'PUT','files' => true] ) }}
 
       <div class="modal-header">
-        <h5 id="exampleModalLabel" class="modal-title">Editar Perfil</h5>
+        <h5 id="exampleModalLabel" class="modal-title">Editar Foto</h5>
         <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
       </div>
       <div class="modal-body">
-        <p class="italic"><small>Los campos con * son oligatorios</small></p>
-          <div class="form-group">
-            <label><strong>Nombres *</strong></label>
-            {{Form::text('name',null, array('required' => 'required','files' => true,'class' => 'form-control'))}}
-        </div>
+     
             <input type="hidden" name="profile_id">
 
             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label title="Opcional"><strong>Foto</strong> </label>
+                                    <label title="Opcional"><strong>Seleccione foto en formato Png o Jpeg</strong> </label>
                                     <input type="file" name="image" class="form-control">
                                     @if($errors->has('image'))
                                         <span>
@@ -581,13 +638,9 @@
                                     @endif
                                 </div>
 
-                                <div class="form-group well">
-                            <label for="tags">Etiquetas (palabras separadas por coma)</label>
-                            <input type="text" name="tags" data-role="tagsinput" class="form-control">
-                        </div>
      
         <div class="form-group">       
-            <input type="submit" value="Editar Perfil" class="btn btn-primary">
+            <input type="submit" value="Actualizar Foto" class="btn btn-primary">
           </div>
         </div>
       {{ Form::close() }}
@@ -604,6 +657,9 @@
   <!-- Argon JS -->
   <script src="{{ asset('js/argon.js?v=1.0.0') }}"></script>
   <script>
+  // $('#exampleModal').show();
+  
+
      function seeRequestProject(e){
       let request = $(e).attr("data-request");
       let project_id = $(e).attr("data-project_id");
@@ -722,8 +778,26 @@ $(document).ready(function() {
           });	
       });  
 
+  
      
   </script>
+
+<?php
+
+if(Auth::user()->is_active ==0 )
+{
+
+echo "<script language='JavaScript' type='text/javascript'>
+$(document).ready(function() {
+  $('#exampleModal').modal('show');
+ });
+</script>";
+
+}
+
+   ?>
+
+
 </body>
 
 </html>

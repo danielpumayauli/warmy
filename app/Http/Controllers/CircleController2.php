@@ -71,58 +71,6 @@ class CircleController extends Controller
         return view('circles')->with(compact('projects','usersProjects','request_projects','numRequest'));
     }
 
-
-    public function index2()
-    {
-        // $projects = auth()->user()->projects->join('circle_project', 'circle_project.id', '=', 'circles.id');
-        
-        $projects = DB::table('projects')
-                        ->select('projects.id AS project_id',
-                                    'projects.name AS project_name',
-                                    'projects.shortName AS project_shortName',
-                                    'projects.description AS project_description',
-                                    'projects.goals AS project_goals',
-                                    'projects.participants AS project_participants',
-                                'circles.name AS circle_name',
-                                'users.name AS author_name',
-                                'users.lastName AS author_lastName')
-                        ->join('project_user', 'project_user.project_id', '=', 'projects.id')
-                        ->leftJoin('users', 'users.id', '=', 'projects.user_id')
-                        ->leftJoin('circle_project','circle_project.project_id','=','projects.id')
-                        ->leftJoin('circles','circles.id','=','circle_project.circle_id')
-                        ->where('project_user.user_id',auth()->user()->id)
-                       ->get();
-                    // ->toSQL();
-         // dd($projects);
-        
-        $usersProjects = DB::select('select pp.project_id,u.id,u.name,u.lastName,u.image from 
-                                    (select pu.project_id 
-                                    from project_user pu
-                                    where pu.user_id = '.auth()->user()->id.'
-                                    group by pu.project_id) pp
-                                    left join project_user pu2 on pu2.project_id = pp.project_id
-                                    left join users u on u.id = pu2.user_id');
-
-        $request_projects = DB::select("SELECT pr.id AS request_id, 
-                                    pr.project_id as project_id, 
-                                    pr.user_id as user_id, 
-                                    p.name as project_name, 
-                                    p.image as project_image, 
-                                    p.shortName as project_shortName, 
-                                    u.name as user_name, 
-                                    u.lastName user_lastName, 
-                                    u.email AS user_email, 
-                                    u.career AS user_career, 
-                                    u.image AS user_image,
-                                    u.lookingFor as user_looking 
-                            FROM project_requests pr INNER JOIN projects p ON p.id = pr.project_id INNER JOIN users u ON u.id = pr.user_id 
-                            WHERE pr.project_id IN (SELECT project_id FROM project_user WHERE user_id = ".auth()->user()->id." GROUP BY project_id) AND pr.state = 0 
-                            ");
-        $numRequest = sizeof($request_projects);
-    
-        return view('create')->with(compact('projects','usersProjects','request_projects','numRequest'));
-    }
-
     /**
      * Show the form for creating a new resource.
      *

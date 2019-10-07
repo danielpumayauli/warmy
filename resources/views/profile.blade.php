@@ -7,7 +7,7 @@
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="WA">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Perfil - WARMI ARMY</title>
+  <title>Perfil - WARMY ARMY</title>
   <!-- Favicon -->
   <link href="{{ asset('img/brand/favicon.png')}}" rel="icon" type="image/png">
   <!-- Fonts -->
@@ -18,9 +18,69 @@
   <!-- Argon CSS -->
   <link type="text/css" href="{{ asset('css/argon.css?v=1.0.0') }}" rel="stylesheet">
   <link type="text/css" href="{{ asset('css/app.css?v=1.0.0') }}" rel="stylesheet">
+ 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
+
+  <link rel="stylesheet" href="css/bootstrap-image-checkbox.css">
+  <style type="text/css">
+.bootstrap-tagsinput .tag {
+    margin-right: 2px;
+    color: white;
+}
+
+.label-info {
+    background-color: #5bc0de;
+}
+
+.label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+.bootstrap-tagsinput {
+  width: 100% !important;
+}
+
+
+
+.gallery-selector__cta-header {
+  color: black;
+    font-size: 30px;
+    line-height: 37px;
+}
+
+.gallery-selector__cta-sub-header {
+
+  
+    color: dimgray;
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 27px;
+}
+
+
+.caption {
+  color: #FFFFFF;
+ position: absolute;
+ top: 45%;
+ left: 0;
+ width: 100%;
+}
+
+  </style>
+
 </head>
 
 <body>
+
   <!-- Sidenav -->
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main" >
     <div class="container-fluid">
@@ -29,8 +89,8 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <!-- Brand -->
-      <a class="navbar-brand pt-0" href="/profile" style="">
-        WARMI ARMY
+      <a class="navbar-brand pt-0" href="/" style="">
+        WARMY ARMY
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
@@ -50,7 +110,7 @@
                 data-project_name="{{ $request->project_name }}"
                 data-user_id="{{ $request->user_id }}"
                 data-user_name="{{ $request->user_name }} {{ $request->user_lastName }}"
-                data-user_image="{{ ($request->user_image == null) ? '/storage/image/user-default.png' : $request->user_image}}"
+                data-user_image="{{ $request->user_image }}"
                 data-user_career="{{ $request->user_career }}"
                 data-user_email="{{ $request->user_email }}" 
                 data-user_looking="{{ $request->user_looking }}" 
@@ -70,8 +130,8 @@
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
-              <span class="avatar avatar-sm rounded-circle" style="background-color: transparent;">
-                <img alt="Image placeholder" src="{{ (Auth::user()->image == null) ? '/storage/image/user-default.png' : '/storage/image/'.Auth::user()->image }}">
+              <span class="avatar avatar-sm rounded-circle">
+                <img alt="Image placeholder" src="{{ asset('img/theme/team-1-800x800.jpg') }}">
               </span>
             </div>
           </a>
@@ -168,27 +228,11 @@
         </ul>
         <!-- Divider -->
         <hr class="my-3">
-        <!-- Heading -->
-        <!-- Navigation -->
-        <!-- <ul class="navbar-nav mb-md-3">
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
-              <i class="ni ni-spaceship"></i> Getting started
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html">
-              <i class="ni ni-palette"></i> Foundation
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html">
-              <i class="ni ni-ui-04"></i> Components
-            </a>
-          </li>
-        </ul> -->
+
       </div>
     </div>
+
+
   </nav>
   <!-- Main content -->
   <div class="main-content">
@@ -198,18 +242,7 @@
         <!-- Brand -->
         <h4 class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block">MI PERFIL</h4>
         
-        <!-- Form -->
-        <!-- <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-          <div class="form-group mb-0">
-            <div class="input-group input-group-alternative">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-search"></i></span>
-              </div>
-              <input class="form-control" placeholder="Search" type="text">
-            </div>
-          </div>
-        </form> -->
-        <!-- User -->
+     
         <ul class="navbar-nav align-items-center d-none d-md-flex">
           <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ni ni-bell-55"></i>
@@ -229,7 +262,7 @@
                 data-project_name="{{ $request->project_name }}"
                 data-user_id="{{ $request->user_id }}"
                 data-user_name="{{ $request->user_name }} {{ $request->user_lastName }}"
-                data-user_image="{{ ($request->user_image == null) ? '/storage/image/user-default.png' : $request->user_image}}"
+                data-user_image="{{ $request->user_image }}"
                 data-user_career="{{ $request->user_career }}"
                 data-user_email="{{ $request->user_email }}" 
                 data-user_looking="{{ $request->user_looking }}" 
@@ -250,9 +283,9 @@
           <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
-                <span class="avatar avatar-sm rounded-circle" style="background: transparent">
-                <img alt="Image placeholder" src="{{ (Auth::user()->image == null) ? '/storage/image/user-default.png' : '/storage/image/'.Auth::user()->image }}">
-               
+                <span class="avatar avatar-sm rounded-circle">
+                <img alt="Image placeholder" src="/storage/image/{{ Auth::user()->image }}">
+
                   
 
                 </span>
@@ -321,91 +354,210 @@
                 <div class="col">
                   <h3 class="mb-0 data-info-person">DATOS PERSONALES</h3>
                 </div>
+
+
                 <div class="col text-right">
-                  <button type="button" data-id="{{ Auth::user()->id }}" class="open-EditProfileDialog btn btn-link" data-toggle="modal" data-target="#editModal" ><i class="fa fa-edit"></i>  Editar</button>
+                  <button type="button" data-id="{{ Auth::user()->id }}" class="open-EditProfileDialog btn btn-link" data-toggle="modal" data-target="#editModal" ><i class="fa fa-edit"></i>  Editar Foto</button>
                   
                 </div>
+
+      
+
+   
+
               </div>
             </div>
             <div class="table-responsive">
+
+
+
+
+
+
+
               <!-- Add personal details from this user here! -->
               <div class="card card-profile shadow" style="padding-top: 5rem; overflow-x: hidden;">
                 <div class="row justify-content-center">
                   <div class="col-lg-3 order-lg-2">
-                    <div class="card-profile-image">
-                      <!-- <a onclick="seeModalUploadImage(this)" style="cursor:pointer"> -->
-                        <img src="{{ (Auth::user()->image == null) ? '/storage/image/user-default.png' : '/storage/image/'.Auth::user()->image }}">
-                      <!-- </a> -->
-                    </div>
+                    
                   </div>
                 </div>
-                <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                  <!-- For external people -->
-                  <!-- <div class="d-flex justify-content-between">
-                    <a href="#" class="btn btn-sm btn-info mr-4">Conectar</a>
-                    <a href="#" class="btn btn-sm btn-default float-right">Enviar Mensaje</a>
-                  </div> -->
+
+
+
+                <div class="card-profile-image">
+                  <a href="#">
+                    <img  class="rounded-circle" src="/storage/image/{{ Auth::user()->image }}">
+                  </a>
+                  
                 </div>
+
+                
+                <div class="card-body pt-0 pt-md-4">
+           <h2>
+          Hola, {{ Auth::user()->name }}<span class="font-weight-light"></span>
+           </h2>
+     
+   </div>
+            
+          
                 <div class="card-body pt-0 pt-md-4">
                   <div class="row">
                     <div class="col">
                       <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                        <div>
-                          <span class="heading">{{ $numContacts }}</span>
-                          <span class="description">Contactos</span>
-                        </div>
-                        <div>
-                          <span class="heading">{{ $numProjects }}</span>
-                          <span class="description">Círculos</span>
-                        </div>
+                      
                       </div>
                     </div>
                   </div>
                   <div class="text-left">
+
+                          
+                  <h2>Información de la cuenta</h2>
+                   Email (privado)
+            <div class="form-group">
+        <input type="text" value="{{ Auth::user()->email }}" class="form-control" disabled />
+      </div>
+
+      <h2> Información del perfil   </h2>
+
+                             
+             <div class="form-group" id="groupfirstName">
+            <label class="" for="firstName">Nombre <small>(mostrado públicamente)</small></label>
+            <input class="form-control input-lg edit-profile-input short" type="text" id="firstName" name="firstName" value="{{ Auth::user()->name }}">        </div>
+            
+            <div class="form-group" id="grouplastName">
+            <label class="" for="lastName">Apellidos <small>(mostrado públicamente)</small></label>
+            <input class="form-control input-lg edit-profile-input short" type="text" id="lastName" name="lastName" value="{{ Auth::user()->lastName }}">        </div>
+                 
+
+            <div class="form-group" id="grouplastName">
+            <label class="" for="lastName">DNI<small></small></label>
+            <input class="form-control input-lg edit-profile-input short" type="text" id="dni" name="dni" value="{{ Auth::user()->dni }}">        </div>
+            
+
+
+            <div class="form-group">
+            <label for="aboutMe">Quién soy</label>
+            <textarea placeholder="" id="aboutMe" name="aboutMe" class="form-control" rows="3"></textarea>        </div>  
+
+     
+            <div class="custom-control custom-radio mb-3">
+            <input name="custom-radio-2" class="custom-control-input" id="customRadio5" type="radio">
+            <label class="custom-control-label" for="customRadio5">Hombre</label>
+            </div>
+
+            <div class="custom-control custom-radio mb-3">
+            <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
+            <label class="custom-control-label" for="customRadio6">Mujer</label>
+            </div>
+  
+
+      
+            <button type="button" class="btn btn-primary btn-sm float-right">Actualizar</button>
+            
+                  
+                  
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+    <div class="modal-header d-block">
+    <header class="gallery-selector__header-container">
+        <h1 class="gallery-selector__cta-header">
+        Escoge uno o más temas 
+        </h1>
+        <h2 class="gallery-selector__cta-sub-header">
+        Esto nos ayudará a recomendarte proyectos
+        </h2>
+      </header>
+        </div>
+
+      <div class="modal-body">
+
+      <form method="post" action="{{url('/categories')}}">
+
+      <div class="row">
+    <div class="col-md-3">
+        <div class="custom-control custom-checkbox image-checkbox">
+            <input type="checkbox" class="custom-control-input" id="ck1a" value='1' name="sports[]">
+            <label class="custom-control-label" for="ck1a">
+
+
+            <div class="thumbnail text-center">
+                <img src="img/annie-spratt.jpg" alt="#" class="img-fluid">
+
+                <div class="caption">
+                <p>Laboral</p>
+                </div>
+            </div>
+
+
+            </label>
+
+
+
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="custom-control custom-checkbox image-checkbox">
+            <input type="checkbox" class="custom-control-input" id="ck1b" value='2' name="sports[]">
+            <label class="custom-control-label" for="ck1b">
+            <div class="thumbnail text-center">
+                <img src="img/luca-bravo.jpg" alt="#" class="img-fluid">
+                <div class="caption">
+                <p>StartUp</p>
+                </div>
+            </label>
+        </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="custom-control custom-checkbox image-checkbox">
+            <input type="checkbox" class="custom-control-input" id="ck1c" value='1' name="sports[]">
+            <label class="custom-control-label" for="ck1c">
+            <div class="thumbnail text-center">
+                <img src="img/muneeb-syed.jpg" alt="#" class="img-fluid">
+                <div class="caption">
+                <p>Comercial</p>
+                </div>
+            </label>
+        </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="custom-control custom-checkbox image-checkbox">
+            <input type="checkbox" class="custom-control-input" id="ck1d" value='1' name="sports[]">
+            <label class="custom-control-label" for="ck1d">
+            <div class="thumbnail text-center">
+                <img src="img/vladimir-kudinov.jpg" alt="#" class="img-fluid">
+                <div class="caption">
+                <p>Social</p>
+                </div>
+            </label>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+
+      </div>
+
+
+      
+
+      <div class="modal-footer">
+       
+        <button type="button" class="btn btn-primary">Guardar preferencias</button>
+      </div>
+    </div>
+  </div>
+</div>
                     
-                   
-                    <div class="h5 font-weight-300 pd-l-5em">
-                      <span class="data-info-person">Nombre:</span> <span>{{ Auth::user()->name }} , 27</span>
-                    </div>
-                    <div class="h5 font-weight-300 pd-l-5em">
-                      <span class="data-info-person">Fecha de Nacimiento:</span> <span> {{ Auth::user()->birthDate }}</span>
-                    </div>
-                    <div class="h5 font-weight-300 pd-l-5em">
-                      <span class="data-info-person">Documento de Identidad:</span> <span> {{ Auth::user()->dni ? Auth::user()->dni : "--" }}</span>
-                    </div>
-                   <div class="h5 font-weight-300 pd-l-5em">
-                      <span class="data-info-person">Dirección:</span> <span>{{ Auth::user()->address ? Auth::user()->address : "--" }}</span>
-                    </div>
-
-                    <hr>
-
-                    <h3 class="text-center data-info-person" >PERFIL PROFESIONAL</h3>
-
-                    <div class="h5 font-weight-300 pd-l-5em">
-                      <span class="data-info-person">Profesión:</span> <span> {{ Auth::user()->career ? Auth::user()->career : "--" }}</span>
-                    </div>
-                    <div class="h5 font-weight-300 pd-l-5em">
-                      <span class="data-info-person">Modalidad:</span> <span>{{ Auth::user()->modality ? Auth::user()->modality : "--" }}</span>
-                    </div>
-                    <div class="h5 font-weight-300 pd-l-5em">
-                      <span class="data-info-person">Nivel de instrucción:</span> <span>{{ Auth::user()->degree ? Auth::user()->degree : "--" }}</span>
-                    </div>
-
-                    <hr>
-
-                    <h3 class="text-center data-info-person" >MIS CIRCULOS</h3>
-
-                    
-                    @forelse($projects as $project)
-                    <div class="h5 font-weight-300 pd-l-5em">
-                      <a href="/project/{{ $project->shortName }}">{{ $project->name }} <i>({{ $project->circle_name }})</i> </a>
-                    </div>
-                    @empty
-                    <div class="h5 font-weight-300 pd-1-5em">
-                      <span>Aún no tiene proyectos.</span>
-                    </div>
-                    @endforelse
-
+</form>
                     
                   </div>
                 </div>
@@ -433,7 +585,7 @@
                 <div class="row">
                   <div class="col-md-3" >
                     <a href="#" class="avatar avatar-sm" style="margin:0 auto" data-toggle="tooltip" data-original-title="{{ $contact->name . ' ' . $contact->lastName }}">
-                      <img alt="{{ $contact->name }}" src="{{ ($contact->image == null) ? '/storage/image/user-default.png' : '/storage/image/'.$contact->image }}" class="rounded-circle" style="width:100%">
+                      <img alt="{{ $contact->name }}" src=" /storage/image/{{ $contact->image }}" class="rounded-circle" style="width:100%">
                     </a>
                   </div>
                   <div class="col-md-9" >
@@ -485,13 +637,43 @@
         </div>
       </div>
 
+      <!-- Modal -->
+      <div class="modal fade" id="editImage" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <form id="form-photo" enctype="multipart/form-data">
+            {{csrf_field()}}
+              <div class="modal-header">
+                <h5 class="modal-title" id="requestProject_title">Actualizar imagen</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <img id="img-preview">
+                
+                <input id="user_photo" type="hidden" name="user_photo" value="{{ Auth::user()->id }}">
+                <input id="photo" type="file" class="form-control" name="photo" >
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" >Cerrar</button>
+                  
+                <button class="btn btn-primary">Actualizar Imagen</button>
+                              
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
 
       <!-- Footer -->
       <footer class="footer">
         <div class="row align-items-center justify-content-xl-between">
           <div class="col-xl-6">
             <div class="copyright text-center text-xl-left text-muted">
-              &copy; 2019 <a href="#" class="font-weight-bold ml-1" target="_blank">Warmi Army</a>
+              &copy; 2019 <a href="#" class="font-weight-bold ml-1" target="_blank">Warmy Army</a>
             </div>
           </div>
         </div>
@@ -506,20 +688,16 @@
         {{ Form::open(['route' => ['profile.update', 1], 'method' => 'PUT','files' => true] ) }}
 
       <div class="modal-header">
-        <h5 id="exampleModalLabel" class="modal-title">Editar Perfil</h5>
+        <h5 id="exampleModalLabel" class="modal-title">Editar Foto</h5>
         <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
       </div>
       <div class="modal-body">
-        <p class="italic"><small>Los campos con * son oligatorios</small></p>
-          <div class="form-group">
-            <label><strong>Nombres *</strong></label>
-            {{Form::text('name',null, array('required' => 'required','files' => true,'class' => 'form-control'))}}
-        </div>
+     
             <input type="hidden" name="profile_id">
 
             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label title="Opcional"><strong>Foto</strong> </label>
+                                    <label title="Opcional"><strong>Seleccione foto en formato Png o Jpeg</strong> </label>
                                     <input type="file" name="image" class="form-control">
                                     @if($errors->has('image'))
                                         <span>
@@ -527,22 +705,29 @@
                                         </span>
                                     @endif
                                 </div>
+
      
         <div class="form-group">       
-            <input type="submit" value="Editar Perfil" class="btn btn-primary">
+            <input type="submit" value="Actualizar Foto" class="btn btn-primary">
           </div>
         </div>
       {{ Form::close() }}
     </div>
   </div>
 </div>
+
+
   <!-- Argon Scripts -->
   <!-- Core -->
   <script src="{{ asset('vendor/jquery/dist/jquery.min.js') }}"></script>
   <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
   <!-- Argon JS -->
   <script src="{{ asset('js/argon.js?v=1.0.0') }}"></script>
   <script>
+  // $('#exampleModal').show();
+  
+
      function seeRequestProject(e){
       let request = $(e).attr("data-request");
       let project_id = $(e).attr("data-project_id");
@@ -595,6 +780,30 @@
     });
 });
 
+
+$(document).ready(function() {
+    $('.open-EditProfileDialog2').on('click', function(){
+      var url ="profile/"  
+      var id = $(this).data('id').toString();
+      url = url.concat(id).concat("/edit");
+      //alert(url);
+
+      $.get(url, function(data){
+        $("#editModal input[name='name']").val(data['name']);
+        $("#editModal input[name='profile_id']").val(data['id']);
+    
+      });
+    });
+});
+
+
+
+
+     function seeModalUploadImage(e){
+
+      $('#editImage').modal('show');
+     }
+
      $('#form-photo').on('submit', function(e) {
         e.preventDefault();
         console.log('di clic en form');
@@ -637,8 +846,26 @@
           });	
       });  
 
+  
      
   </script>
+
+<?php
+
+if(Auth::user()->is_active ==0 )
+{
+
+echo "<script language='JavaScript' type='text/javascript'>
+$(document).ready(function() {
+  $('#exampleModal').modal('show');
+ });
+</script>";
+
+}
+
+   ?>
+
+
 </body>
 
 </html>

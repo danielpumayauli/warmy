@@ -18,9 +18,77 @@
   <!-- Argon CSS -->
   <link type="text/css" href="{{ asset('css/argon.css?v=1.0.0') }}" rel="stylesheet">
   <link type="text/css" href="{{ asset('css/app.css?v=1.0.0') }}" rel="stylesheet">
+ 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
+
+  <link rel="stylesheet" href="css/bootstrap-image-checkbox.css">
+  <style type="text/css">
+.bootstrap-tagsinput .tag {
+    margin-right: 2px;
+    color: white;
+}
+
+.label-info {
+    background-color: #5bc0de;
+}
+
+.label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+.bootstrap-tagsinput {
+  width: 100% !important;
+}
+
+
+
+.gallery-selector__cta-header {
+  color: black;
+    font-size: 30px;
+    line-height: 37px;
+}
+
+.gallery-selector__cta-sub-header {
+
+  
+    color: dimgray;
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 27px;
+}
+
+
+.caption {
+  color: #FFFFFF;
+ position: absolute;
+ top: 45%;
+ left: 0;
+ width: 100%;
+}
+
+.custom-file {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: calc(1.5em + 1.25rem + 2px);
+    margin-bottom: 0;
+}
+
+  </style>
+
 </head>
 
 <body>
+
   <!-- Sidenav -->
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main" >
     <div class="container-fluid">
@@ -168,27 +236,11 @@
         </ul>
         <!-- Divider -->
         <hr class="my-3">
-        <!-- Heading -->
-        <!-- Navigation -->
-        <!-- <ul class="navbar-nav mb-md-3">
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
-              <i class="ni ni-spaceship"></i> Getting started
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html">
-              <i class="ni ni-palette"></i> Foundation
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html">
-              <i class="ni ni-ui-04"></i> Components
-            </a>
-          </li>
-        </ul> -->
+
       </div>
     </div>
+
+
   </nav>
   <!-- Main content -->
   <div class="main-content">
@@ -196,20 +248,9 @@
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main" style="background-color: #7C5CC4">
       <div class="container-fluid">
         <!-- Brand -->
-        <h4 class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block">MI PERFIL</h4>
+        <h4 class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block">MIS CÍRCULOS</h4>
         
-        <!-- Form -->
-        <!-- <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-          <div class="form-group mb-0">
-            <div class="input-group input-group-alternative">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-search"></i></span>
-              </div>
-              <input class="form-control" placeholder="Search" type="text">
-            </div>
-          </div>
-        </form> -->
-        <!-- User -->
+     
         <ul class="navbar-nav align-items-center d-none d-md-flex">
           <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ni ni-bell-55"></i>
@@ -251,7 +292,10 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="{{ Auth::user()->image }}">
+                <img alt="Image placeholder" src="/storage/image/{{ Auth::user()->image }}">
+
+                  
+
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name }}</span>
@@ -313,95 +357,181 @@
       <div class="row mt-5">
         <div class="col-xl-8 mb-5 mb-xl-0">
           <div class="card shadow">
-            <div class="card-header border-0">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h3 class="mb-0 data-info-person">DATOS PERSONALES</h3>
-                </div>
-                <div class="col text-right">
-                  <a href="#!" class="btn btn-sm btn-primary">Editar</a>
-                </div>
-              </div>
-            </div>
+         
             <div class="table-responsive">
+
+
+
+
+
+
+
               <!-- Add personal details from this user here! -->
-              <div class="card card-profile shadow" style="padding-top: 5rem; overflow-x: hidden;">
+              <div class="card card-profile shadow" style="overflow-x: hidden;">
                 <div class="row justify-content-center">
                   <div class="col-lg-3 order-lg-2">
-                    <div class="card-profile-image">
-                      <a onclick="seeModalUploadImage(this)" style="cursor:pointer">
-                        <img src="{{ Auth::user()->image }}" class="rounded-circle">
-                      </a>
-                    </div>
+                    
                   </div>
                 </div>
-                <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                  <!-- For external people -->
-                  <!-- <div class="d-flex justify-content-between">
-                    <a href="#" class="btn btn-sm btn-info mr-4">Conectar</a>
-                    <a href="#" class="btn btn-sm btn-default float-right">Enviar Mensaje</a>
-                  </div> -->
-                </div>
+
+
+            
+          
                 <div class="card-body pt-0 pt-md-4">
                   <div class="row">
-                    <div class="col">
-                      <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                        <div>
-                          <span class="heading">{{ $numContacts }}</span>
-                          <span class="description">Contactos</span>
-                        </div>
-                        <div>
-                          <span class="heading">{{ $numProjects }}</span>
-                          <span class="description">Círculos</span>
-                        </div>
-                      </div>
-                    </div>
+                   
                   </div>
                   <div class="text-left">
+
+
+      <h2> Registrar proyecto </h2>
+
+                             
+         
+            <div class="form-group">
+                    <label>Círculo de integración</label>
+                    <select class="form-control" id="circulo">
+                    <option value="">Seleccione</option>
+                      <option value="1">Comercial</option>
+                      <option value="2">Laboral</option>
+                      <option value="3">Social</option>
+                      <option value="4">Startup</option>
+                      </select>
+                  </div>
+
+                  <div class="form-group" id="groupfirstName">
+            <label class="" for="firstName">Título</small></label>
+            <input class="form-control input-lg edit-profile-input short" type="text" id="firstName" name="firstName">        </div>
+            
+
+            <div class="form-group">
+            <label>Descripción</label>
+            <textarea placeholder="" id="aboutMe" name="aboutMe" class="form-control" rows="3"></textarea>        </div>  
+
+            <div class="form-group">
+            <label>Metas</label>
+            <textarea placeholder="" id="aboutMe" name="aboutMe" class="form-control" rows="3"></textarea>        </div>  
+
+
+
+
+            <div class="form-group">
+            <label class="form-group">Palabras clave (separadas por comas)</label>
+            <input class="form-control" type="text"  data-role="tagsinput">  </div>
+
+            <div class="form-group">
+            <label>Logo</label>
+            <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFileLang" lang="en">
+                    <label class="custom-file-label" for="customFileLang">Seleccione logo</label>
+                  </div>
+                  </div>
+    
+            <button type="button" class="btn btn-primary mt-4 float-right">Registrar</button>
+            
+   
+                  
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+    <div class="modal-header d-block">
+    <header class="gallery-selector__header-container">
+        <h1 class="gallery-selector__cta-header">
+        Escoge uno o más temas 
+        </h1>
+        <h2 class="gallery-selector__cta-sub-header">
+        Esto nos ayudará a recomendarte proyectos
+        </h2>
+      </header>
+        </div>
+
+      <div class="modal-body">
+
+      <form method="post" action="{{url('/categories')}}">
+
+      <div class="row">
+    <div class="col-md-3">
+        <div class="custom-control custom-checkbox image-checkbox">
+            <input type="checkbox" class="custom-control-input" id="ck1a" value='1' name="sports[]">
+            <label class="custom-control-label" for="ck1a">
+
+
+            <div class="thumbnail text-center">
+                <img src="img/annie-spratt.jpg" alt="#" class="img-fluid">
+
+                <div class="caption">
+                <p>Laboral</p>
+                </div>
+            </div>
+
+
+            </label>
+
+
+
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="custom-control custom-checkbox image-checkbox">
+            <input type="checkbox" class="custom-control-input" id="ck1b" value='2' name="sports[]">
+            <label class="custom-control-label" for="ck1b">
+            <div class="thumbnail text-center">
+                <img src="img/luca-bravo.jpg" alt="#" class="img-fluid">
+                <div class="caption">
+                <p>StartUp</p>
+                </div>
+            </label>
+        </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="custom-control custom-checkbox image-checkbox">
+            <input type="checkbox" class="custom-control-input" id="ck1c" value='1' name="sports[]">
+            <label class="custom-control-label" for="ck1c">
+            <div class="thumbnail text-center">
+                <img src="img/muneeb-syed.jpg" alt="#" class="img-fluid">
+                <div class="caption">
+                <p>Comercial</p>
+                </div>
+            </label>
+        </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="custom-control custom-checkbox image-checkbox">
+            <input type="checkbox" class="custom-control-input" id="ck1d" value='1' name="sports[]">
+            <label class="custom-control-label" for="ck1d">
+            <div class="thumbnail text-center">
+                <img src="img/vladimir-kudinov.jpg" alt="#" class="img-fluid">
+                <div class="caption">
+                <p>Social</p>
+                </div>
+            </label>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+
+      </div>
+
+
+      
+
+      <div class="modal-footer">
+       
+        <button type="button" class="btn btn-primary">Guardar preferencias</button>
+      </div>
+    </div>
+  </div>
+</div>
                     
-                   
-                    <div class="h5 font-weight-300 pd-l-5em">
-                      <span class="data-info-person">Nombre:</span> <span>{{ Auth::user()->name }} , 27</span>
-                    </div>
-                    <div class="h5 font-weight-300 pd-l-5em">
-                      <span class="data-info-person">Fecha de Nacimiento:</span> <span> {{ Auth::user()->birthDate }}</span>
-                    </div>
-                    <div class="h5 font-weight-300 pd-l-5em">
-                      <span class="data-info-person">Documento de Identidad:</span> <span> {{ Auth::user()->dni ? Auth::user()->dni : "--" }}</span>
-                    </div>
-                   <div class="h5 font-weight-300 pd-l-5em">
-                      <span class="data-info-person">Dirección:</span> <span>{{ Auth::user()->address ? Auth::user()->address : "--" }}</span>
-                    </div>
-
-                    <hr>
-
-                    <h3 class="text-center data-info-person" >PERFIL PROFESIONAL</h3>
-
-                    <div class="h5 font-weight-300 pd-l-5em">
-                      <span class="data-info-person">Profesión:</span> <span> {{ Auth::user()->career ? Auth::user()->career : "--" }}</span>
-                    </div>
-                    <div class="h5 font-weight-300 pd-l-5em">
-                      <span class="data-info-person">Modalidad:</span> <span>{{ Auth::user()->modality ? Auth::user()->modality : "--" }}</span>
-                    </div>
-                    <div class="h5 font-weight-300 pd-l-5em">
-                      <span class="data-info-person">Nivel de instrucción:</span> <span>{{ Auth::user()->degree ? Auth::user()->degree : "--" }}</span>
-                    </div>
-
-                    <hr>
-
-                    <h3 class="text-center data-info-person" >MIS CIRCULOS</h3>
-
-                    
-                    @forelse($projects as $project)
-                    <div class="h5 font-weight-300 pd-l-5em">
-                      <a href="/project/{{ $project->shortName }}">{{ $project->name }} <i>({{ $project->circle_name }})</i> </a>
-                    </div>
-                    @empty
-                    <div class="h5 font-weight-300 pd-1-5em">
-                      <span>Aún no tiene proyectos.</span>
-                    </div>
-                    @endforelse
-
+</form>
                     
                   </div>
                 </div>
@@ -415,7 +545,9 @@
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0 data-info-person">CONTACTOS</h3>                  
+                  <h3 class="mb-0 data-info-person">
+                  Directrices para el logo
+                  </h3>                  
                 </div>
                 <!-- <div class="col text-right">
                   <a href="#!" class="btn btn-sm btn-primary">Ver todos</a>
@@ -424,27 +556,37 @@
             </div>
 
             <div class="card-body">
-              <!-- Add new contacts for this user here! -->
-              @forelse($contacts as $contact)
-                <div class="row">
-                  <div class="col-md-3" >
-                    <a href="#" class="avatar avatar-sm" style="margin:0 auto" data-toggle="tooltip" data-original-title="{{ $contact->name . ' ' . $contact->lastName }}">
-                      <img alt="{{ $contact->name }}" src="{{ $contact->image }}" class="rounded-circle" style="width:100%">
-                    </a>
-                  </div>
-                  <div class="col-md-9" >
-                    <p>{{ $contact->name .' '.$contact->lastName }}<br>
-                    <i style="font-size: 12px; "> Del círculo: {{ $contact->project_name }}</i></p>
-                  </div>
-                  <hr>
+           
+            <section class="hz-carded guidelines-card photo float">        
+           
+        <div class="text-m">La foto debe cumplir los siguientes criterios:</div>
+        <div class="guidelines-section">
+            <i class="guidelines-icon icon hzi-font hzi-Dos"></i>
+            <div class="guidelines-text">
+                <div class="guidelines-title">Qué hacer</div>
+                <ul>
+                    <li class="">Fotos de espacios residenciales</li>
+                    <li>Fotos grandes (1000 píxeles de ancho o más)</li>
+                    <li>Formatos JPEG, GIF, PNG, o TIFF de 1 página</li>
+                    <li>Fotos con calidad alta</li>
+                </ul>
+            </div>
+        </div>
+        <div class="guidelines-section">
+            <i class="guidelines-icon icon hzi-font hzi-Donts"></i>
+            <div class="guidelines-text">
+                <div class="guidelines-title">Qué no hacer</div>
+                <ul>
+                    <li class="">Fotos de espacios comerciales o de oficinas</li>
+                    <li>Fotos pequeñas y/o con marcas de agua</li>
+                    <li>Formatos PDF, TIFF de varias páginas</li>
+                    <li>Fotos con calidad baja</li>
+                </ul>
+            </div>
+        </div>
+        </section>
                   
-                  
-                </div>
-              @empty
-                <div>
-                  <p>Aún no tienes contactos en tus proyectos.</p>
-                </div>
-              @endforelse                  
+                           
                 
             </div>
           </div>
@@ -524,13 +666,54 @@
       </footer>
     </div>
   </div>
+
+  <!-- Edit Modal -->
+<div id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+  <div role="document" class="modal-dialog">
+    <div class="modal-content">
+        {{ Form::open(['route' => ['profile.update', 1], 'method' => 'PUT','files' => true] ) }}
+
+      <div class="modal-header">
+        <h5 id="exampleModalLabel" class="modal-title">Editar Foto</h5>
+        <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+      </div>
+      <div class="modal-body">
+     
+            <input type="hidden" name="profile_id">
+
+            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label title="Opcional"><strong>Seleccione foto en formato Png o Jpeg</strong> </label>
+                                    <input type="file" name="image" class="form-control">
+                                    @if($errors->has('image'))
+                                        <span>
+                                           <strong>{{ $errors->first('image') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
+     
+        <div class="form-group">       
+            <input type="submit" value="Actualizar Foto" class="btn btn-primary">
+          </div>
+        </div>
+      {{ Form::close() }}
+    </div>
+  </div>
+</div>
+
+
   <!-- Argon Scripts -->
   <!-- Core -->
   <script src="{{ asset('vendor/jquery/dist/jquery.min.js') }}"></script>
   <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
   <!-- Argon JS -->
   <script src="{{ asset('js/argon.js?v=1.0.0') }}"></script>
   <script>
+  // $('#exampleModal').show();
+  
+
      function seeRequestProject(e){
       let request = $(e).attr("data-request");
       let project_id = $(e).attr("data-project_id");
@@ -567,6 +750,40 @@
       $('#requestProject').modal('show');
       
      }
+
+     $(document).ready(function() {
+    $('.open-EditProfileDialog').on('click', function(){
+      var url ="profile/"  
+      var id = $(this).data('id').toString();
+      url = url.concat(id).concat("/edit");
+      //alert(url);
+
+      $.get(url, function(data){
+        $("#editModal input[name='name']").val(data['name']);
+        $("#editModal input[name='profile_id']").val(data['id']);
+    
+      });
+    });
+});
+
+
+$(document).ready(function() {
+    $('.open-EditProfileDialog2').on('click', function(){
+      var url ="profile/"  
+      var id = $(this).data('id').toString();
+      url = url.concat(id).concat("/edit");
+      //alert(url);
+
+      $.get(url, function(data){
+        $("#editModal input[name='name']").val(data['name']);
+        $("#editModal input[name='profile_id']").val(data['id']);
+    
+      });
+    });
+});
+
+
+
 
      function seeModalUploadImage(e){
 
@@ -615,8 +832,12 @@
           });	
       });  
 
+  
      
   </script>
+
+
+
 </body>
 
 </html>

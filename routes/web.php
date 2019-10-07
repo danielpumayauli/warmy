@@ -45,6 +45,9 @@ Route::middleware(['auth'])->group(function (){
 
     Route::get('/my-circles', 'CircleController@index')->name('my-circles');
 
+	    Route::get('/create', 'CircleController@index2')->name('create');
+
+
     // Route::get('/circle/new', 'CircleController@new');
     Route::resource('circle', 'CircleController');
 
