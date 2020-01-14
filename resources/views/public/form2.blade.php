@@ -126,7 +126,7 @@
 		                        	   Registre su empresa en Warmi Army
 		                        	</h3>
 															<h5>
-																<a href="#">Ver reportes</a>
+																<a href="/business/reports">Ver reportes</a>
 															</h5>
 		                    	</div>
 													<div class="wizard-navigation">

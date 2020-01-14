@@ -33,6 +33,8 @@ Route::get('/form', 'FormController@index')->name('form');
 Route::get('/form2', 'Form2Controller@index')->name('form2');
 Route::post('/form2', 'Form2Controller@store');
 Route::post('/form2/registerMember', 'Form2Controller@registerMember');
+Route::get('/business/reports', 'Reports\BusinessController@index');
+Route::get('/business/reports/download/{id}', 'Reports\BusinessController@download');
 
 
 
