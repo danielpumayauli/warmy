@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Reports;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use App\TemporalProject;
 
 class BusinessController extends Controller
 {
@@ -27,8 +28,15 @@ class BusinessController extends Controller
      */
     public function download($id)
     {
-        $pdf = \PDF::loadView('pdf/company',compact('id'));
-        // dd('descargare el id '. $id);
+        $project = TemporalProject::find($id);
+        // dd($project->name);
+        $name = $project->name;
+        $cantMujeres = $project->quantity_female;
+        $cantHombres = $project->quantity_male;
+        $ceo = $project->female_ceo;
+
+        $pdf = \PDF::loadView('pdf/company',compact('name','cantMujeres','cantHombres','ceo'));
+        // // dd('descargare el id '. $id);
         return $pdf->download('report.pdf');
     }
 

@@ -19,6 +19,9 @@ class CreateTemporalProjectsTable extends Migration
             $table->string('name',255);
             $table->string('category')->nullable();
             $table->string('image',255)->nullable();
+            $table->tinyInteger('female_ceo');
+            $table->integer('quantity_female');
+            $table->integer('quantity_male');
 
             $table->timestamps();
         });
