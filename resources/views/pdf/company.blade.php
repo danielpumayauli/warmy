@@ -13,7 +13,7 @@
     <script src="{{ asset('js/Chart.min.js') }}"></script>
 </head>
 <body>
-    <h1>PDF CON LARAVEL - {{$name}}</h1>
+    <h1>Informe Warmi Army - {{$name}}</h1>
     <span>Cantidad de mujeres: {{$cantMujeres}}</span>
     <span>cantidad de hombres: {{$cantHombres}}</span>
 
